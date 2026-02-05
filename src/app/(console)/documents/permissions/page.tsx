@@ -1,9 +1,9 @@
 'use client';
 import * as React from 'react';
-import { DocumentPermissionsHeader } from '@/components/documents/permissions/DocumentPermissionsHeader';
-import { DocumentPermissionsContextSelector } from '@/components/documents/permissions/DocumentPermissionsContextSelector';
-import { DocumentPermissionsMatrix } from '@/components/documents/permissions/DocumentPermissionsMatrix';
-import { DocumentPermissionsLoading } from '@/components/documents/permissions/DocumentPermissionsLoading';
+import { DocumentPermissionsHeader } from '@/features/documents/components/permissions/DocumentPermissionsHeader';
+import { DocumentPermissionsContextSelector } from '@/features/documents/components/permissions/DocumentPermissionsContextSelector';
+import { DocumentPermissionsMatrix } from '@/features/documents/components/permissions/DocumentPermissionsMatrix';
+import { DocumentPermissionsLoading } from '@/features/documents/components/permissions/DocumentPermissionsLoading';
 
 export default function DocumentPermissionsPage() {
     const [isLoading, setIsLoading] = React.useState(true);

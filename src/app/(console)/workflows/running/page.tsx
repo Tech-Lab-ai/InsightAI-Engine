@@ -1,21 +1,20 @@
 'use client';
 
 import * as React from 'react';
-import { WorkflowRunningHeader } from '@/components/workflows/running/WorkflowRunningHeader';
-import { WorkflowRunningStats } from '@/components/workflows/running/WorkflowRunningStats';
-import { WorkflowRunningList } from '@/components/workflows/running/WorkflowRunningList';
-import { WorkflowRunningEmptyState } from '@/components/workflows/running/WorkflowRunningEmptyState';
-import { WorkflowRunningLoading } from '@/components/workflows/running/WorkflowRunningLoading';
-import { mockRunningWorkflows, RunningWorkflow } from '@/components/workflows/running/mock-data';
+import { WorkflowRunningHeader } from '@/features/workflows/components/running/WorkflowRunningHeader';
+import { WorkflowRunningStats } from '@/features/workflows/components/running/WorkflowRunningStats';
+import { WorkflowRunningList } from '@/features/workflows/components/running/WorkflowRunningList';
+import { WorkflowRunningEmptyState } from '@/features/workflows/components/running/WorkflowRunningEmptyState';
+import { WorkflowRunningLoading } from '@/features/workflows/components/running/WorkflowRunningLoading';
+import { getMockRunningWorkflows, RunningWorkflow } from '@/features/workflows/services/runningService';
 
 export default function WorkflowsRunningPage() {
     const [isLoading, setIsLoading] = React.useState(true);
     const [runningWorkflows, setRunningWorkflows] = React.useState<RunningWorkflow[]>([]);
 
     React.useEffect(() => {
-        // Simula o carregamento dos dados
         const timer = setTimeout(() => {
-            setRunningWorkflows(mockRunningWorkflows);
+            setRunningWorkflows(getMockRunningWorkflows());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);

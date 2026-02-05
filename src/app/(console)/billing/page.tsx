@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
-import { BillingHeader } from '@/components/billing/BillingHeader';
-import { CurrentPlanCard } from '@/components/billing/CurrentPlanCard';
-import { PlansGrid } from '@/components/billing/PlansGrid';
-import { BillingSummary } from '@/components/billing/BillingSummary';
-import { BillingLoading } from '@/components/billing/BillingLoading';
+import { BillingHeader } from '@/features/billing/components/BillingHeader';
+import { CurrentPlanCard } from '@/features/billing/components/CurrentPlanCard';
+import { PlansGrid } from '@/features/billing/components/PlansGrid';
+import { BillingSummary } from '@/features/billing/components/BillingSummary';
+import { BillingLoading } from '@/features/billing/components/BillingLoading';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Info } from 'lucide-react';
 

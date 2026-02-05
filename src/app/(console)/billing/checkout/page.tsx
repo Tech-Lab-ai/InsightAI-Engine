@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { plans, Plan } from '@/components/billing/plans-data';
-import { CheckoutHeader } from '@/components/billing/checkout/CheckoutHeader';
-import { CheckoutPlanSummary } from '@/components/billing/checkout/CheckoutPlanSummary';
-import { CheckoutActions } from '@/components/billing/checkout/CheckoutActions';
+import { CheckoutHeader } from '@/features/billing/components/checkout/CheckoutHeader';
+import { CheckoutPlanSummary } from '@/features/billing/components/checkout/CheckoutPlanSummary';
+import { CheckoutActions } from '@/features/billing/components/checkout/CheckoutActions';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { getPlanById, Plan } from '@/features/billing/services/planService';
 
 export default function CheckoutPage() {
     const router = useRouter();
@@ -18,7 +18,7 @@ export default function CheckoutPage() {
 
     React.useEffect(() => {
         if (planId) {
-            const plan = plans.find(p => p.id === planId);
+            const plan = getPlanById(planId as Plan['id']);
             setSelectedPlan(plan);
         } else {
             router.push('/billing');

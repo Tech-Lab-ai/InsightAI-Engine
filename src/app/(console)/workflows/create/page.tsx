@@ -1,10 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { WorkflowCreateHeader } from '@/components/workflows/create/WorkflowCreateHeader';
-import { WorkflowStepper } from '@/components/workflows/create/WorkflowStepper';
-import { WorkflowSidebar } from '@/components/workflows/create/WorkflowSidebar';
-import { WorkflowCanvas } from '@/components/workflows/create/WorkflowCanvas';
+import { WorkflowCreateHeader } from '@/features/workflows/components/create/WorkflowCreateHeader';
+import { WorkflowStepper } from '@/features/workflows/components/create/WorkflowStepper';
+import { WorkflowSidebar } from '@/features/workflows/components/create/WorkflowSidebar';
+import { WorkflowCanvas } from '@/features/workflows/components/create/WorkflowCanvas';
 
 export default function CreateWorkflowPage() {
     const [currentStep, setCurrentStep] = React.useState(1);

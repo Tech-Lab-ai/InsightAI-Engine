@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
-import { SettingsHeader } from "@/components/settings/SettingsHeader";
-import { SettingsGrid } from "@/components/settings/SettingsGrid";
-import { SettingsLoading } from "@/components/settings/SettingsLoading";
+import { SettingsHeader } from "@/features/settings/components/SettingsHeader";
+import { SettingsGrid } from "@/features/settings/components/SettingsGrid";
+import { SettingsLoading } from "@/features/settings/components/SettingsLoading";
 
 export default function SettingsPage() {
     const [isLoading, setIsLoading] = React.useState(true);

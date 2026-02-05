@@ -1,8 +1,8 @@
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, FileText, Activity, Workflow } from "lucide-react";
-import { ActivityChart } from "@/components/activity/ActivityChart";
-import { ActivityLogs } from "@/components/activity/ActivityLogs";
+import { ActivityChart } from "@/features/dashboard/components/activity/ActivityChart";
+import { ActivityLogs } from "@/features/dashboard/components/activity/ActivityLogs";
 
 const stats = [
     { title: "Total de Documentos", value: "1,250", icon: FileText, description: "+20.1% do último mês" },

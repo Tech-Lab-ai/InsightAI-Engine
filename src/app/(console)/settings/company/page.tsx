@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
-import { CompanyForm } from "@/components/settings/company/CompanyForm";
+import { CompanyForm } from "@/features/settings/components/company/CompanyForm";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';

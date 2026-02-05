@@ -1,17 +1,11 @@
 'use client';
 import * as React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { SupportHeader } from '@/components/support/SupportHeader';
-import { SupportTicketStatus } from '@/components/support/SupportTicketStatus';
-import { SupportForm } from '@/components/support/SupportForm';
+import { SupportHeader } from '@/features/support/components/SupportHeader';
+import { SupportTicketStatus } from '@/features/support/components/SupportTicketStatus';
+import { SupportForm } from '@/features/support/components/SupportForm';
 import { useToast } from '@/hooks/use-toast';
-
-export type Ticket = {
-    id: string;
-    subject: string;
-    status: 'Aberto' | 'Em Andamento' | 'Fechado';
-    submittedAt: string;
-};
+import { Ticket } from '@/features/support/types/ticket';
 
 export default function SupportPage() {
     const searchParams = useSearchParams();

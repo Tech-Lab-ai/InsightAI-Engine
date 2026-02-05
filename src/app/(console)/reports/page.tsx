@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
-import { ReportsHeader } from '@/components/reports/ReportsHeader';
-import { ReportsKPIs } from '@/components/reports/ReportsKPIs';
-import { ReportsCharts } from '@/components/reports/ReportsCharts';
-import { ReportsTable } from '@/components/reports/ReportsTable';
-import { ReportsLoading } from '@/components/reports/ReportsLoading';
+import { ReportsHeader } from '@/features/reports/components/ReportsHeader';
+import { ReportsKPIs } from '@/features/reports/components/ReportsKPIs';
+import { ReportsCharts } from '@/features/reports/components/ReportsCharts';
+import { ReportsTable } from '@/features/reports/components/ReportsTable';
+import { ReportsLoading } from '@/features/reports/components/ReportsLoading';
 
 export default function ReportsPage() {
   const [isLoading, setIsLoading] = React.useState(true);

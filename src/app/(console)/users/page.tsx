@@ -1,12 +1,13 @@
 'use client';
 import * as React from 'react';
-import { UsersHeader } from '@/components/users/UsersHeader';
-import { UsersFilters } from '@/components/users/UsersFilters';
-import { UsersTable } from '@/components/users/UsersTable';
-import { UsersLoading } from '@/components/users/UsersLoading';
-import { UsersEmptyState } from '@/components/users/UsersEmptyState';
-import { UserInviteModal } from '@/components/users/UserInviteModal';
-import { mockUsers, User } from '@/components/users/mock-data';
+import { UsersHeader } from '@/features/users/components/UsersHeader';
+import { UsersFilters } from '@/features/users/components/UsersFilters';
+import { UsersTable } from '@/features/users/components/UsersTable';
+import { UsersLoading } from '@/features/users/components/UsersLoading';
+import { UsersEmptyState } from '@/features/users/components/UsersEmptyState';
+import { UserInviteModal } from '@/features/users/components/UserInviteModal';
+import { getMockUsers } from '@/features/users/services/userService';
+import { User } from '@/features/users/types/user';
 
 export default function UsersPage() {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -15,7 +16,7 @@ export default function UsersPage() {
 
     React.useEffect(() => {
         const timer = setTimeout(() => {
-            setUsers(mockUsers);
+            setUsers(getMockUsers());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);

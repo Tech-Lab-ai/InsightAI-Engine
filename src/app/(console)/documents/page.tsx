@@ -1,16 +1,16 @@
 'use client';
 import * as React from 'react';
 
-import { DocumentsHeader } from '@/components/documents/DocumentsHeader';
-import { DocumentsActionsBar } from '@/components/documents/DocumentsActionsBar';
-import { DocumentsFilters } from '@/components/documents/DocumentsFilters';
-import { DocumentsList } from '@/components/documents/DocumentsList';
-import { DocumentsGrid } from '@/components/documents/DocumentsGrid';
-import { DocumentsLoading } from '@/components/documents/DocumentsLoading';
-import { DocumentsEmptyState } from '@/components/documents/DocumentsEmptyState';
-import { DocumentDetailsPanel } from '@/components/documents/DocumentDetailsPanel';
+import { DocumentsHeader } from '@/features/documents/components/DocumentsHeader';
+import { DocumentsActionsBar } from '@/features/documents/components/DocumentsActionsBar';
+import { DocumentsFilters } from '@/features/documents/components/DocumentsFilters';
+import { DocumentsList } from '@/features/documents/components/DocumentsList';
+import { DocumentsGrid } from '@/features/documents/components/DocumentsGrid';
+import { DocumentsLoading } from '@/features/documents/components/DocumentsLoading';
+import { DocumentsEmptyState } from '@/features/documents/components/DocumentsEmptyState';
+import { DocumentDetailsPanel } from '@/features/documents/components/DocumentDetailsPanel';
 
-import { mockDocuments, Document } from '@/components/documents/mock-data';
+import { getMockDocuments, Document } from '@/features/documents/services/documentService';
 
 export default function DocumentsPage() {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -20,7 +20,7 @@ export default function DocumentsPage() {
 
     React.useEffect(() => {
         const timer = setTimeout(() => {
-            setDocuments(mockDocuments);
+            setDocuments(getMockDocuments());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);

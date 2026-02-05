@@ -1,12 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { WorkflowHistoryHeader } from '@/components/workflows/history/WorkflowHistoryHeader';
-import { WorkflowHistoryFilters } from '@/components/workflows/history/WorkflowHistoryFilters';
-import { WorkflowHistoryList } from '@/components/workflows/history/WorkflowHistoryList';
-import { WorkflowHistoryEmptyState } from '@/components/workflows/history/WorkflowHistoryEmptyState';
-import { WorkflowHistoryLoading } from '@/components/workflows/history/WorkflowHistoryLoading';
-import { mockExecutions, WorkflowExecution } from '@/components/workflows/history/history-mock-data';
+import { WorkflowHistoryHeader } from '@/features/workflows/components/history/WorkflowHistoryHeader';
+import { WorkflowHistoryFilters } from '@/features/workflows/components/history/WorkflowHistoryFilters';
+import { WorkflowHistoryList } from '@/features/workflows/components/history/WorkflowHistoryList';
+import { WorkflowHistoryEmptyState } from '@/features/workflows/components/history/WorkflowHistoryEmptyState';
+import { WorkflowHistoryLoading } from '@/features/workflows/components/history/WorkflowHistoryLoading';
+import { getMockExecutions } from '@/features/workflows/services/executionService';
+import { WorkflowExecution } from '@/features/workflows/types/execution';
 
 export default function WorkflowsHistoryPage() {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -14,7 +15,7 @@ export default function WorkflowsHistoryPage() {
 
     React.useEffect(() => {
         const timer = setTimeout(() => {
-            setExecutions(mockExecutions);
+            setExecutions(getMockExecutions());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);

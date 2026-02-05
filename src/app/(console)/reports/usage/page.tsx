@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
-import { ReportsUsageHeader } from '@/components/reports/usage/ReportsUsageHeader';
-import { ReportsUsageFilters } from '@/components/reports/usage/ReportsUsageFilters';
-import { ReportsUsageMetrics } from '@/components/reports/usage/ReportsUsageMetrics';
-import { ReportsUsageCharts } from '@/components/reports/usage/ReportsUsageCharts';
-import { ReportsUsageTable } from '@/components/reports/usage/ReportsUsageTable';
-import { ReportsUsageLoading } from '@/components/reports/usage/ReportsUsageLoading';
-import { ReportsUsageEmptyState } from '@/components/reports/usage/ReportsUsageEmptyState';
+import { ReportsUsageHeader } from '@/features/reports/components/usage/ReportsUsageHeader';
+import { ReportsUsageFilters } from '@/features/reports/components/usage/ReportsUsageFilters';
+import { ReportsUsageMetrics } from '@/features/reports/components/usage/ReportsUsageMetrics';
+import { ReportsUsageCharts } from '@/features/reports/components/usage/ReportsUsageCharts';
+import { ReportsUsageTable } from '@/features/reports/components/usage/ReportsUsageTable';
+import { ReportsUsageLoading } from '@/features/reports/components/usage/ReportsUsageLoading';
+import { ReportsUsageEmptyState } from '@/features/reports/components/usage/ReportsUsageEmptyState';
 
 export default function ReportsUsagePage() {
   const [isLoading, setIsLoading] = React.useState(true);

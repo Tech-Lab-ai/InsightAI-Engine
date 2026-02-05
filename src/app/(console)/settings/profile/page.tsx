@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
-import { ProfileForm } from "@/components/settings/profile/ProfileForm";
+import { ProfileForm } from "@/features/settings/components/profile/ProfileForm";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';

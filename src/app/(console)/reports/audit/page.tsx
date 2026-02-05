@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
-import { ReportsAuditHeader } from '@/components/reports/audit/ReportsAuditHeader';
-import { ReportsAuditFilters } from '@/components/reports/audit/ReportsAuditFilters';
-import { ReportsAuditTable } from '@/components/reports/audit/ReportsAuditTable';
-import { ReportsAuditLoading } from '@/components/reports/audit/ReportsAuditLoading';
-import { ReportsAuditEmptyState } from '@/components/reports/audit/ReportsAuditEmptyState';
-import { mockAuditEvents, AuditEvent } from '@/components/reports/audit/audit-mock-data';
+import { ReportsAuditHeader } from '@/features/reports/components/audit/ReportsAuditHeader';
+import { ReportsAuditFilters } from '@/features/reports/components/audit/ReportsAuditFilters';
+import { ReportsAuditTable } from '@/features/reports/components/audit/ReportsAuditTable';
+import { ReportsAuditLoading } from '@/features/reports/components/audit/ReportsAuditLoading';
+import { ReportsAuditEmptyState } from '@/features/reports/components/audit/ReportsAuditEmptyState';
+import { getMockAuditEvents, AuditEvent } from '@/features/reports/services/auditService';
 
 export default function ReportsAuditPage() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -13,7 +13,7 @@ export default function ReportsAuditPage() {
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-        setEvents(mockAuditEvents);
+        setEvents(getMockAuditEvents());
         setIsLoading(false);
     }, 1500);
     return () => clearTimeout(timer);

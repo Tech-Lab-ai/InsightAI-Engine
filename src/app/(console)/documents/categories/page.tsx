@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
-import { DocumentCategoriesHeader } from '@/components/documents/categories/DocumentCategoriesHeader';
-import { DocumentCategoriesList } from '@/components/documents/categories/DocumentCategoriesList';
-import { DocumentCategoriesLoading } from '@/components/documents/categories/DocumentCategoriesLoading';
-import { DocumentCategoriesEmptyState } from '@/components/documents/categories/DocumentCategoriesEmptyState';
-import { DocumentCategoryModal } from '@/components/documents/categories/DocumentCategoryModal';
-import { mockCategories, DocumentCategory } from '@/components/documents/categories/mock-data';
+import { DocumentCategoriesHeader } from '@/features/documents/components/categories/DocumentCategoriesHeader';
+import { DocumentCategoriesList } from '@/features/documents/components/categories/DocumentCategoriesList';
+import { DocumentCategoriesLoading } from '@/features/documents/components/categories/DocumentCategoriesLoading';
+import { DocumentCategoriesEmptyState } from '@/features/documents/components/categories/DocumentCategoriesEmptyState';
+import { DocumentCategoryModal } from '@/features/documents/components/categories/DocumentCategoryModal';
+import { getMockCategories, DocumentCategory } from '@/features/documents/services/categoryService';
 
 export default function DocumentCategoriesPage() {
     const [isLoading, setIsLoading] = React.useState(true);
@@ -14,7 +14,7 @@ export default function DocumentCategoriesPage() {
 
     React.useEffect(() => {
         const timer = setTimeout(() => {
-            setCategories(mockCategories);
+            setCategories(getMockCategories());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);

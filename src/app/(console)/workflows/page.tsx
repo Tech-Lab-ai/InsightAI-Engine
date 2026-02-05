@@ -2,28 +2,30 @@
 'use client';
 
 import * as React from 'react';
-import { WorkflowHeader } from '@/components/workflows/WorkflowHeader';
-import { WorkflowStats } from '@/components/workflows/WorkflowStats';
-import { WorkflowList } from '@/components/workflows/WorkflowList';
-import { WorkflowEmptyState } from '@/components/workflows/WorkflowEmptyState';
-import { WorkflowLoading } from '@/components/workflows/WorkflowLoading';
-import { mockWorkflows } from '@/components/workflows/mock-data';
+import { WorkflowHeader } from '@/features/workflows/components/WorkflowHeader';
+import { WorkflowStats } from '@/features/workflows/components/WorkflowStats';
+import { WorkflowList } from '@/features/workflows/components/WorkflowList';
+import { WorkflowEmptyState } from '@/features/workflows/components/WorkflowEmptyState';
+import { WorkflowLoading } from '@/features/workflows/components/WorkflowLoading';
+import { getMockWorkflows, Workflow } from '@/features/workflows/services/workflowService';
+import { useRouter } from 'next/navigation';
+
 
 export default function WorkflowsPage() {
     const [isLoading, setIsLoading] = React.useState(true);
-    const [workflows, setWorkflows] = React.useState(mockWorkflows);
+    const [workflows, setWorkflows] = React.useState<Workflow[]>([]);
+    const router = useRouter();
 
-    // Simula o carregamento dos dados
     React.useEffect(() => {
         const timer = setTimeout(() => {
+            setWorkflows(getMockWorkflows());
             setIsLoading(false);
         }, 1500);
         return () => clearTimeout(timer);
     }, []);
 
     const handleCreateWorkflow = () => {
-        // Lógica para navegação ou abertura de modal de criação
-        console.log("Criar novo workflow");
+        router.push('/workflows/create');
     };
 
     const renderContent = () => {

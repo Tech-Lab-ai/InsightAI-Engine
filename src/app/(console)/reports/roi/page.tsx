@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
-import { ReportsROIHeader } from '@/components/reports/roi/ReportsROIHeader';
-import { ReportsROICards } from '@/components/reports/roi/ReportsROICards';
-import { ReportsROICharts } from '@/components/reports/roi/ReportsROICharts';
-import { ReportsROIBreakdown } from '@/components/reports/roi/ReportsROIBreakdown';
-import { ReportsROILoading } from '@/components/reports/roi/ReportsROILoading';
-import { ReportsROIEmptyState } from '@/components/reports/roi/ReportsROIEmptyState';
+import { ReportsROIHeader } from '@/features/reports/components/roi/ReportsROIHeader';
+import { ReportsROICards } from '@/features/reports/components/roi/ReportsROICards';
+import { ReportsROICharts } from '@/features/reports/components/roi/ReportsROICharts';
+import { ReportsROIBreakdown } from '@/features/reports/components/roi/ReportsROIBreakdown';
+import { ReportsROILoading } from '@/features/reports/components/roi/ReportsROILoading';
+import { ReportsROIEmptyState } from '@/features/reports/components/roi/ReportsROIEmptyState';
 
 export default function ReportsRoiPage() {
   const [isLoading, setIsLoading] = React.useState(true);
