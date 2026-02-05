@@ -1,19 +1,20 @@
-import { PageHeader, PageHeaderTitle } from "@/components/page-header";
+import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bot, FileText, Layers, ShieldCheck } from "lucide-react";
+import { Bot, FileText, Activity, Workflow } from "lucide-react";
 
 const stats = [
-    { title: "Documentos Ativos", value: "1,204", icon: FileText },
-    { title: "Agentes Especializados", value: "4", icon: Bot },
-    { title: "Sessões Abertas", value: "32", icon: Layers },
-    { title: "Eventos de Auditoria (24h)", value: "5,678", icon: ShieldCheck },
+    { title: "Total de Documentos", value: "1,250", icon: FileText, description: "+20.1% do último mês" },
+    { title: "Interações no Chat", value: "23,150", icon: Bot, description: "+180.1% do último mês" },
+    { title: "Workflows Ativos", value: "12", icon: Workflow, description: "+5 desde a última semana" },
+    { title: "Status da Plataforma", value: "Normal", icon: Activity, description: "Todos os sistemas operacionais" },
 ];
 
 export default function DashboardPage() {
     return (
-        <div className="flex flex-col gap-4">
+        <>
             <PageHeader>
                 <PageHeaderTitle>Dashboard</PageHeaderTitle>
+                <PageHeaderDescription>Visão geral da sua atividade na plataforma InsightAI.</PageHeaderDescription>
             </PageHeader>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {stats.map((stat) => (
@@ -27,30 +28,24 @@ export default function DashboardPage() {
                         <CardContent>
                             <div className="text-2xl font-bold">{stat.value}</div>
                             <p className="text-xs text-muted-foreground">
-                                Dados em tempo real
+                                {stat.description}
                             </p>
                         </CardContent>
                     </Card>
                 ))}
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
                  <Card>
                     <CardHeader>
                         <CardTitle>Atividade Recente</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-muted-foreground">Em breve: Gráfico de atividades e logs recentes.</p>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Qualidade do RAG</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">Em breve: Métricas de groundedness e fallback rate.</p>
+                        <div className="p-8 text-center border-2 border-dashed rounded-lg">
+                            <p className="text-muted-foreground">Gráfico de atividades e logs recentes em construção.</p>
+                        </div>
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </>
     );
 }

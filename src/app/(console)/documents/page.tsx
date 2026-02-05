@@ -4,20 +4,20 @@ import { PlusCircle } from "lucide-react";
 
 export default function DocumentsPage() {
     return (
-        <div className="flex flex-col gap-4">
+        <>
             <PageHeader>
                 <div className="flex-1">
                     <PageHeaderTitle>Documentos</PageHeaderTitle>
-                    <PageHeaderDescription>Gerencie sua base de conhecimento. Faça upload, controle versões e defina níveis de acesso.</PageHeaderDescription>
+                    <PageHeaderDescription>Gerencie sua base de conhecimento.</PageHeaderDescription>
                 </div>
-                 <Button>
+                 <Button variant="outline">
                     <PlusCircle className="mr-2 h-4 w-4" />
                     Fazer Upload
                 </Button>
             </PageHeader>
             <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Tabela de documentos em breve.</p>
+                <p className="text-muted-foreground">Tabela de documentos em construção.</p>
             </div>
-        </div>
+        </>
     );
 }
