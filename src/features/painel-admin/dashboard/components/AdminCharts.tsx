@@ -1,6 +1,6 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const mrrData = [
   { name: 'Jan', MRR: 4000 },
@@ -20,14 +20,14 @@ const activityData = [
 
 export function AdminCharts() {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      <Card>
+    <div className="grid h-full gap-4 md:grid-cols-2">
+      <Card className="flex flex-col">
         <CardHeader>
           <CardTitle>Crescimento da Receita (MRR)</CardTitle>
           <CardDescription>Receita Mensal Recorrente nos últimos 6 meses.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+        <CardContent className="flex-1">
+          <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={mrrData}>
               <defs>
                 <linearGradient id="colorMrr" x1="0" y1="0" x2="0" y2="1">
@@ -44,13 +44,13 @@ export function AdminCharts() {
           </ResponsiveContainer>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="flex flex-col">
         <CardHeader>
           <CardTitle>Uso de IA por Setor</CardTitle>
           <CardDescription>Distribuição de consumo dos recursos de IA.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+        <CardContent className="flex-1">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={activityData} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" />

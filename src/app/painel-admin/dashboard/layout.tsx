@@ -12,7 +12,7 @@ export default function PainelAdminLayout({
       <AdminHeader />
       <div className="flex flex-1 overflow-hidden border-t">
         <AdminSidebar />
-        <main className={cn("relative flex-1 overflow-y-auto p-4 md:p-8")}>
+        <main className={cn("relative flex-1 p-4 md:p-8")}>
           {children}
         </main>
       </div>
