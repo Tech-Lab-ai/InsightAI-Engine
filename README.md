@@ -250,3 +250,7 @@ support@insightai.com (exemplo)
 ---
 
 **InsightAI — IA confiável para decisões reais.**# InsightAI-Engine
+##Vini Amaral##
+**Engenharia de Software • Tech Labss • Arquitetura Cloud •**
+
+**Projeto desenvolvido com foco em automação real, infraestrutura moderna e liberdade criativa para desenvolvedores.**
