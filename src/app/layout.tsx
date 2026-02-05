@@ -4,6 +4,7 @@ import '@/styles/theme.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: 'InsightAI - Transforme documentos em inteligência confiável',
@@ -26,6 +27,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
