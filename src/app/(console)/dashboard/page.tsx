@@ -1,6 +1,8 @@
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, FileText, Activity, Workflow } from "lucide-react";
+import { ActivityChart } from "@/components/activity/ActivityChart";
+import { ActivityLogs } from "@/components/activity/ActivityLogs";
 
 const stats = [
     { title: "Total de Documentos", value: "1,250", icon: FileText, description: "+20.1% do último mês" },
@@ -11,7 +13,7 @@ const stats = [
 
 export default function DashboardPage() {
     return (
-        <>
+        <div className="space-y-8">
             <PageHeader>
                 <PageHeaderTitle>Dashboard</PageHeaderTitle>
                 <PageHeaderDescription>Visão geral da sua atividade na plataforma InsightAI.</PageHeaderDescription>
@@ -34,18 +36,14 @@ export default function DashboardPage() {
                     </Card>
                 ))}
             </div>
-            <div className="grid grid-cols-1 gap-4">
-                 <Card>
-                    <CardHeader>
-                        <CardTitle>Atividade Recente</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                            <p className="text-muted-foreground">Gráfico de atividades e logs recentes em construção.</p>
-                        </div>
-                    </CardContent>
-                </Card>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                 <div className="lg:col-span-2">
+                    <ActivityChart />
+                 </div>
+                 <div>
+                    <ActivityLogs />
+                 </div>
             </div>
-        </>
+        </div>
     );
 }
