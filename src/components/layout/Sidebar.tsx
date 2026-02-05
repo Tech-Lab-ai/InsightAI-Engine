@@ -93,24 +93,19 @@ export function Sidebar() {
         if (item.label === "Relatórios" && pathname === "/audit") {
             return true;
         }
-        // Special case for /users, which is under "Configurações"
-        if (item.label === "Configurações" && pathname === "/users") {
-            return true;
-        }
 
         return pathname.startsWith(item.basePath);
     })?.basePath;
 
     const isSubItemOf = (subItems: {href:string}[], basePath: string) => {
         if (basePath === "/reports" && pathname === "/audit") return true;
-        if (basePath === "/settings" && pathname === "/users") return true;
         return subItems.some(sub => pathname.startsWith(sub.href));
     }
 
 
     return (
-        <aside className="hidden border-r bg-muted/40 md:block">
-            <div className="flex h-full max-h-screen flex-col gap-2">
+        <aside className="hidden w-[220px] flex-col border-r bg-sidebar md:flex lg:w-[280px]">
+            <div className="flex h-full flex-col gap-2">
                 <div className="flex-1 overflow-y-auto">
                     <nav className="grid items-start px-2 text-sm font-medium lg:px-4 py-4">
                         <Accordion type="single" collapsible defaultValue={defaultAccordionValue} className="w-full">

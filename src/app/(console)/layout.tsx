@@ -1,22 +1,29 @@
+"use client"
+
+import { usePathname } from 'next/navigation';
 import { AppHeader } from "@/components/layout/AppHeader";
 import { AppFooter } from "@/components/layout/AppFooter";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { cn } from "@/lib/utils";
 
 export default function ConsoleLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isChatPage = pathname.startsWith('/chat');
+
   return (
-    <div className="light-theme grid h-screen w-full overflow-hidden md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <Sidebar />
-      <div className="flex flex-col">
-        <AppHeader />
-        <main className="relative flex flex-1 flex-col gap-4 p-4 overflow-y-auto md:gap-8 md:p-8">
+    <div className="light-theme flex h-screen w-full flex-col bg-background">
+      <AppHeader />
+      <div className="flex flex-1 overflow-hidden border-t">
+        <Sidebar />
+        <main className={cn("relative flex-1 overflow-y-auto", !isChatPage && "p-4 md:p-8")}>
           {children}
         </main>
-        <AppFooter />
       </div>
+      {!isChatPage && <AppFooter />}
     </div>
   );
 }
