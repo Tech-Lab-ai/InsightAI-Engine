@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm:dev:*\"",
-    "dev:web": "next dev -p 9002",
+    "dev:web": "next dev -p 9003",
     "dev:go": "cd BECK-END && go run ./cmd/api",
     "build": "NODE_ENV=production next build",
     "start": "concurrently \"npm:start:*\"",
