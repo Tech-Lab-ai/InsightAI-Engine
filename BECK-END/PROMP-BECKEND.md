@@ -1,199 +1,279 @@
-🎯 PROMPT OFICIAL — BACKEND GO COMPLETO (INSIGHTAI + ASAAS)
-Você é um engenheiro backend sênior especialista em Go, arquitetura enterprise SaaS,
-segurança, multi-tenancy, compliance e integrações financeiras.
+Este é o prompt que “obriga” a IA a fazer o backend certo.
 
-Crie o BACKEND COMPLETO do produto chamado "InsightAI".
+🚀 PROMPT FINAL — BACKEND GO ENTERPRISE (INSIGHTAI)
+Você é uma IA ARQUITETA DE BACKEND ENTERPRISE,
+especialista em GO (Golang), SaaS multi-tenant,
+segurança, compliance, billing e sistemas críticos.
 
-================================================================
-OBJETIVO
-================================================================
-Criar um backend SaaS enterprise em GO que:
-
-- Seja multi-tenant por design
-- Seja seguro e auditável
-- Sirva um frontend Next.js
-- Tenha autenticação, RBAC e auditoria
-- Integre pagamentos via ASAAS
-- Esteja pronto para produção
+Você irá construir o BACKEND COMPLETO da plataforma
+INSIGHTAI ENGINE, baseado no frontend e arquitetura já existentes.
 
 ================================================================
-STACK OBRIGATÓRIA
+REGRA DE OURO (OBRIGATÓRIA)
 ================================================================
-- Linguagem: Go (>= 1.22)
-- API: HTTP REST (JSON)
-- Arquitetura modular
-- Logger estruturado (JSON)
-- Configuração via .env
-- Banco relacional (PostgreSQL)
-- Integração com ASAAS (API oficial)
+
+❌ NÃO criar backend básico
+❌ NÃO criar CRUD simples
+❌ NÃO misturar camadas
+❌ NÃO ignorar multi-tenant
+❌ NÃO ignorar painel admin
+❌ NÃO criar “exemplo de API”
+
+✅ Criar BACKEND ENTERPRISE REAL
+✅ Pronto para produção
+✅ Escalável
+✅ Auditável
+✅ Seguro
+✅ Extensível
 
 ================================================================
-REGRAS ABSOLUTAS
+LINGUAGEM & STACK
 ================================================================
-- Backend é a autoridade final
-- Nunca confiar no frontend
-- Toda request exige tenant
-- Toda ação gera auditoria
-- Negar por padrão
-- Nada hardcoded
-- Nada em pastas genéricas (utils/helpers proibidos)
+
+- Linguagem: GO (Golang)
+- HTTP: net/http ou chi
+- Banco principal: PostgreSQL
+- Cache / fila: Redis
+- Migrations: golang-migrate
+- Auth: JWT + refresh token
+- Config: env + config loader
+- Logs estruturados
+- Observabilidade preparada
 
 ================================================================
-ESTRUTURA DE PASTAS (OBRIGATÓRIA)
+ARQUITETURA OBRIGATÓRIA
 ================================================================
+
+Usar **Clean Architecture + DDD leve**.
+
+Estrutura obrigatória:
+
 /cmd
- └─ api/
-     └─ main.go
-
+  /api
 /internal
- ├─ config
- ├─ server
- ├─ middleware
- ├─ auth
- ├─ tenant
- ├─ rbac
- ├─ audit
- ├─ domain
- ├─ engine
- ├─ agents
- ├─ workflows
- ├─ actions
- ├─ payments
- │   └─ asaas
- ├─ observability
- └─ errors
-
+  /auth
+  /tenants
+  /users
+  /rbac
+  /billing
+  /support
+  /telemetry
+  /audit
+  /featureflags
+  /integrations
+  /admin
+  /system
+  /shared
 /pkg
- └─ types
+  /logger
+  /config
+  /middleware
+  /errors
+
+Separar SEMPRE:
+- handler (HTTP)
+- service (regras)
+- domain (entidades)
+- repository (DB)
+- dto (contratos)
 
 ================================================================
-CONFIGURAÇÃO (.env)
+MULTI-TENANT (NÚCLEO DO SISTEMA)
 ================================================================
-Use variáveis de ambiente para:
-- Porta da API
-- URL do frontend (CORS)
-- JWT secret
-- Tenant header (X-Tenant-Id)
-- Banco de dados
-- ASAAS_API_KEY
-- ASAAS_ENV (sandbox | production)
-- ASAAS_BASE_URL
+
+- Todo request pertence a UMA empresa (tenant)
+- Tenant identificado por:
+  - token
+  - contexto
+- Admin do SaaS NÃO é tenant
+
+Criar:
+- TenantContext
+- TenantMiddleware
 
 ================================================================
-AUTENTICAÇÃO
+AUTENTICAÇÃO & SESSÃO
 ================================================================
-- JWT de curta duração
-- Refresh token
-- Middleware de auth
-- Header: Authorization: Bearer <token>
 
-================================================================
-MULTI-TENANCY
-================================================================
-- Toda request exige X-Tenant-Id
-- Tenant validado no middleware
-- Nenhuma query sem tenant_id
-- Nenhum cache compartilhado
-
-================================================================
-RBAC
-================================================================
-- RBAC por usuário, ação e recurso
-- Função central: Authorize(ctx, input)
-- Negar por padrão
-- Logar toda negação
-
-================================================================
-AUDITORIA
-================================================================
-Auditar:
+Criar:
 - Login
-- Requisições
-- Respostas
-- Execução de ações
-- Pagamentos
-- Falhas
-- Bloqueios
+- Refresh token
+- Logout
+- Sessões
 
-Logs estruturados e imutáveis.
+Separar:
+- Auth do cliente
+- Auth do admin SaaS
 
-================================================================
-ASAAS — INTEGRAÇÃO DE PAGAMENTOS
-================================================================
-Implementar integração COMPLETA com ASAAS:
-
-### Funcionalidades
-- Criar cliente no ASAAS
-- Criar cobrança (PIX, boleto, cartão)
-- Parcelamento quando permitido
-- Cancelar cobrança
-- Consultar status
-- Webhook de pagamento
-
-### Estrutura
-/internal/payments/asaas
- ├─ client.go
- ├─ customer.go
- ├─ billing.go
- ├─ webhook.go
- └─ mapper.go
-
-### Regras
-- Nunca expor API key ao frontend
-- Toda cobrança vinculada a tenant
-- Toda transação auditada
-- Validar assinatura do webhook
+Rotas:
+- /auth/*
+- /admin/auth/*
 
 ================================================================
-ENDPOINTS OBRIGATÓRIOS
+RBAC (OBRIGATÓRIO)
 ================================================================
 
-Auth:
-POST /v1/auth/login
-POST /v1/auth/refresh
+Papéis:
+- Admin SaaS
+- Admin Empresa
+- Member
+- Viewer
 
-Tenant:
-GET /v1/tenant/me
+Permissões por domínio.
 
-Payments (ASAAS):
-POST /v1/payments/customer
-POST /v1/payments/charge
-GET  /v1/payments/charge/{id}
-POST /v1/payments/cancel/{id}
-POST /v1/payments/webhook/asaas
-
-Health:
-GET /health
+Middleware de autorização real.
 
 ================================================================
-CORS
+PAINEL ADMIN (SaaS OWNER)
 ================================================================
-- Aceitar apenas o frontend
-- Métodos restritos
-- Headers explícitos
+
+Backend para:
+
+- Empresas (tenants)
+- Usuários globais
+- Billing & receita
+- Telemetria & incidentes
+- Segurança & compliance
+- Integrações globais
+- Feature flags
+- Suporte & tickets
+- Configurações do sistema
+
+Rotas:
+- /admin/*
+
+Admin NUNCA acessa como cliente.
 
 ================================================================
-QUALIDADE DO CÓDIGO
+BILLING (ASAAS)
 ================================================================
-- Código idiomático Go
-- Tipagem clara
-- Erros tratados
-- Contexto propagado
-- Interfaces bem definidas
-- Comentários apenas quando necessário
+
+Criar domínio de billing com:
+
+- Planos
+- Assinaturas
+- Status
+- Webhooks (preparado)
+- Histórico financeiro
+
+Integração com Asaas:
+- Checkout externo
+- Callback
+- Sincronização de status
+
+NUNCA hardcode valores.
+
+================================================================
+SUPORTE & TICKETS (ENTERPRISE)
+================================================================
+
+Criar subsistema completo:
+
+- Tickets multiempresa
+- SLA
+- Prioridade
+- Status
+- Mensagens
+- Auditoria
+
+Regra crítica:
+- 1 ticket ativo por empresa (exceto enterprise)
+
+Cliente ↔ Backend ↔ Admin
+
+================================================================
+TELEMETRIA & AUDITORIA
+================================================================
+
+Criar sistema de eventos:
+
+- INFO
+- WARNING
+- SECURITY
+- CRITICAL
+
+Logs IMUTÁVEIS.
+
+Eventos para:
+- Segurança
+- Billing
+- Tickets
+- Admin actions
+- Feature flags
+
+================================================================
+FEATURE FLAGS
+================================================================
+
+Criar:
+- Flags globais
+- Flags por plano
+- Flags por empresa
+- Kill switch
+
+Avaliação no backend, não no frontend.
+
+================================================================
+INTEGRAÇÕES
+================================================================
+
+Criar base para integrações:
+
+- Slack
+- Jira
+- ERP
+- BI
+- Automação
+
+Integrações:
+- São EXPANSÕES
+- Não criam novos fluxos
+
+================================================================
+SEGURANÇA & COMPLIANCE
+================================================================
+
+- Logs imutáveis
+- Histórico de ações admin
+- Preparado para SOC 2 / ISO 27001
+- LGPD-ready
+- Separação total de escopos
+
+================================================================
+API DESIGN
+================================================================
+
+- REST consistente
+- DTOs claros
+- Versionamento (/v1)
+- Erros padronizados
+- Sem vazamento de domínio
 
 ================================================================
 RESULTADO ESPERADO
 ================================================================
-- Projeto compilável
-- Backend funcional
-- Pagamentos reais via ASAAS
-- Pronto para integração com frontend
-- Pronto para produção
+
+Gerar:
+
+1. Estrutura completa de pastas
+2. Entidades de domínio
+3. Serviços com regras reais
+4. Repositórios preparados para Postgres
+5. Middlewares de auth, tenant e RBAC
+6. Rotas HTTP
+7. Contratos DTO
+8. Comentários explicativos
+9. Backend pronto para conectar ao frontend existente
 
 ================================================================
-IMPORTANTE
+REGRA FINAL
 ================================================================
-Este backend é base de um produto enterprise real.
-Não criar código de exemplo ou mock.
-Criar código sério, organizado e escalável.
+
+Se existir escolha entre:
+- Simplificar ❌
+- Arquitetar corretamente ✅
+
+SEMPRE ARQUITETAR CORRETAMENTE.
+
+Este backend NÃO é demo.
+É a base de um SaaS enterprise real.
