@@ -33,6 +33,14 @@ export type SuggestPricingTierOutput = z.infer<typeof SuggestPricingTierOutputSc
 export async function suggestPricingTier(
   input: SuggestPricingTierInput
 ): Promise<SuggestPricingTierOutput> {
+  if (!process.env.GEMINI_API_KEY) {
+    console.error(
+      'The GEMINI_API_KEY environment variable is not set. Please obtain an API key from Google AI Studio and add it to a .env.local file.'
+    );
+    throw new Error(
+      'The AI service is not configured correctly. Please check the server logs for more details.'
+    );
+  }
   return suggestPricingTierFlow(input);
 }
 
