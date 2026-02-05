@@ -1,0 +1,27 @@
+'use client';
+import { Button } from "@/components/ui/button";
+import { Upload, FolderPlus, Trash2, MoreVertical } from "lucide-react";
+
+export function DocumentsActionsBar() {
+  return (
+    <div className="flex items-center gap-2 pb-4 border-b">
+        <Button variant="outline" size="sm">
+            <Upload className="mr-2 h-4 w-4" />
+            Upload
+        </Button>
+        <Button variant="outline" size="sm">
+            <FolderPlus className="mr-2 h-4 w-4" />
+            Criar Pasta
+        </Button>
+        <div className="border-l h-6 mx-2"></div>
+        <Button variant="ghost" size="sm" disabled>
+            <Trash2 className="mr-2 h-4 w-4" />
+            Excluir (0)
+        </Button>
+         <Button variant="ghost" size="sm" disabled>
+            <MoreVertical className="mr-2 h-4 w-4" />
+            Mais Ações
+        </Button>
+    </div>
+  );
+}

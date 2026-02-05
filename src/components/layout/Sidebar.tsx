@@ -76,7 +76,6 @@ export function Sidebar() {
     const getBasePath = (path: string) => {
         const parts = path.split('/').filter(Boolean);
         if (parts.length > 1) {
-            // Check for specific top-level routes that are also base paths
             const potentialBasePath = `/${parts[0]}`;
             const isTopLevelBase = menuItems.some(item => item.type === 'dropdown' && item.basePath === potentialBasePath);
             if (isTopLevelBase) return potentialBasePath;
@@ -94,7 +93,7 @@ export function Sidebar() {
     })?.basePath;
 
     const isSubItemOf = (subItems: {href:string}[], basePath: string) => {
-        return subItems.some(sub => pathname === sub.href);
+        return subItems.some(sub => pathname.startsWith(sub.href));
     }
 
 
