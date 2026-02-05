@@ -36,7 +36,7 @@ export function SupportTicketStatus({ activeTicket, onCloseTicket }: SupportTick
                             <p className="font-semibold">{activeTicket.subject}</p>
                             <p className="text-sm text-muted-foreground flex items-center gap-2">
                                 <Clock className="h-4 w-4" /> 
-                                Aberto em: {activeTicket.submittedAt}
+                                Aberto em: {activeTicket.createdAt}
                             </p>
                         </div>
                          <Button variant="outline" onClick={onCloseTicket}>Encerrar Ticket (Simulação)</Button>

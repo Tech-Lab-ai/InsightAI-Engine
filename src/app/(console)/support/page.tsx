@@ -6,41 +6,62 @@ import { SupportTicketStatus } from '@/features/support/components/SupportTicket
 import { SupportForm } from '@/features/support/components/SupportForm';
 import { useToast } from '@/hooks/use-toast';
 import { Ticket } from '@/features/support/types/ticket';
+import { createTicket, getActiveTicket, closeActiveTicket } from '@/features/support/services/supportService';
 
 export default function SupportPage() {
     const searchParams = useSearchParams();
     const { toast } = useToast();
     const [activeTicket, setActiveTicket] = React.useState<Ticket | null>(null);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const initialTopic = searchParams.get('plan') === 'enterprise' ? 'commercial' : 'technical';
 
-    const handleOpenTicket = (subject: string, message: string) => {
-        // Simulação de criação de ticket
-        const newTicket: Ticket = {
-            id: `TKT-${Math.random().toString(36).substr(2, 6).toUpperCase()}`,
-            subject: subject,
-            status: 'Aberto',
-            submittedAt: new Date().toLocaleString('pt-BR'),
-        };
-        setActiveTicket(newTicket);
-        toast({
-            title: "Ticket Aberto com Sucesso",
-            description: `Seu ticket ${newTicket.id} foi registrado. Nossa equipe entrará em contato em breve.`,
-        });
-    };
+    const loadTicket = React.useCallback(async () => {
+        setIsLoading(true);
+        const ticket = await getActiveTicket();
+        setActiveTicket(ticket);
+        setIsLoading(false);
+    }, []);
 
-    const handleCloseTicket = () => {
-        if (activeTicket) {
-             const closedTicket = { ...activeTicket, status: 'Fechado' as const };
-             // In a real app, you might want to keep closed tickets in a history
-             // For this simulation, we'll just clear it.
-             setActiveTicket(null);
-             toast({
-                title: "Ticket Encerrado",
-                description: `O ticket ${closedTicket.id} foi encerrado.`,
+    React.useEffect(() => {
+        loadTicket();
+    }, [loadTicket]);
+
+    const handleOpenTicket = async (subject: string, message: string, topic: string) => {
+        const newTicket = await createTicket({
+            subject,
+            message,
+            topic,
+            companyId: 'mock-company-id',
+            userId: 'mock-user-id',
+        });
+        
+        if (newTicket) {
+            setActiveTicket(newTicket);
+            toast({
+                title: "Ticket Aberto com Sucesso",
+                description: `Seu ticket ${newTicket.id} foi registrado. Nossa equipe entrará em contato em breve.`,
             });
         }
     };
+
+    const handleCloseTicket = async () => {
+        if (activeTicket) {
+             const closedTicketId = await closeActiveTicket(activeTicket.id);
+             if(closedTicketId) {
+                setActiveTicket(null);
+                toast({
+                    title: "Ticket Encerrado",
+                    description: `O ticket ${closedTicketId} foi encerrado.`,
+                });
+             }
+        }
+    };
+
+    if (isLoading) {
+        // You can add a loading skeleton here if you want
+        return <div className="p-8 text-center">Carregando...</div>
+    }
 
     return (
         <div className="space-y-8">

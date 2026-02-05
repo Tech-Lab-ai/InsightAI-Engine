@@ -10,7 +10,7 @@ import { Info, File } from "lucide-react";
 
 type SupportFormProps = {
     isTicketActive: boolean;
-    onOpenTicket: (subject: string, message: string) => void;
+    onOpenTicket: (subject: string, message: string, topic: string) => void;
     initialTopic?: string;
 };
 
@@ -30,7 +30,7 @@ export function SupportForm({ isTicketActive, onOpenTicket, initialTopic = 'tech
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onOpenTicket(subject, message);
+        onOpenTicket(subject, message, topic);
         setSubject('');
         setMessage('');
     };
