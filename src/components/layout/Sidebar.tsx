@@ -8,8 +8,6 @@ import {
     Workflow,
     BarChart,
     FileText,
-    Settings,
-    CreditCard
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -66,32 +64,6 @@ const menuItems = [
             { href: "/documents/upload", label: "Upload" },
             { href: "/documents/categories", label: "Categorias" },
             { href: "/documents/permissions", label: "Permissões" },
-        ]
-    },
-    {
-        type: 'dropdown',
-        label: "Configurações",
-        icon: Settings,
-        basePath: "/settings",
-        subItems: [
-            { href: "/settings/profile", label: "Perfil" },
-            { href: "/settings/company", label: "Empresa" },
-            { href: "/users", label: "Usuários" },
-            { href: "/settings/agents", label: "Agentes" },
-            { href: "/settings/integrations", label: "Integrações" },
-            { href: "/settings/security", label: "Segurança" },
-        ]
-    },
-    {
-        type: 'dropdown',
-        label: "Billing",
-        icon: CreditCard,
-        basePath: "/billing",
-        subItems: [
-            { href: "/billing/plan", label: "Plano Atual" },
-            { href: "/billing/invoices", label: "Faturas" },
-            { href: "/billing/payments", label: "Pagamentos" },
-            { href: "/billing/methods", label: "Métodos de Pagamento" },
         ]
     },
 ];
