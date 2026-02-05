@@ -58,7 +58,7 @@ export default function LoginPage() {
             alt={bgImage.description}
             data-ai-hint={bgImage.imageHint}
             fill
-            className="object-cover"
+            className="object-cover opacity-25"
           />
         )}
       </div>
