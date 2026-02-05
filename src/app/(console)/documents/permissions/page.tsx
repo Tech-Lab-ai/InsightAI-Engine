@@ -1,15 +1,31 @@
-import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
+'use client';
+import * as React from 'react';
+import { DocumentPermissionsHeader } from '@/components/documents/permissions/DocumentPermissionsHeader';
+import { DocumentPermissionsContextSelector } from '@/components/documents/permissions/DocumentPermissionsContextSelector';
+import { DocumentPermissionsMatrix } from '@/components/documents/permissions/DocumentPermissionsMatrix';
+import { DocumentPermissionsLoading } from '@/components/documents/permissions/DocumentPermissionsLoading';
 
 export default function DocumentPermissionsPage() {
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <>
-            <PageHeader>
-                <PageHeaderTitle>Permissões de Documentos</PageHeaderTitle>
-                <PageHeaderDescription>Defina quem pode acessar quais documentos e categorias.</PageHeaderDescription>
-            </PageHeader>
-            <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Página de Permissões de Documentos em construção.</p>
-            </div>
-        </>
+        <div className="space-y-8">
+            <DocumentPermissionsHeader />
+            {isLoading ? (
+                <DocumentPermissionsLoading />
+            ) : (
+                <div className="space-y-4">
+                    <DocumentPermissionsContextSelector />
+                    <DocumentPermissionsMatrix />
+                </div>
+            )}
+        </div>
     );
 }
