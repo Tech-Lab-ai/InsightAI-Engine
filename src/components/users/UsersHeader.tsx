@@ -1,7 +1,8 @@
 'use client';
+import Link from 'next/link';
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, ArrowLeft } from "lucide-react";
 
 type UsersHeaderProps = {
     onInviteUser: () => void;
@@ -16,10 +17,18 @@ export function UsersHeader({ onInviteUser }: UsersHeaderProps) {
           Gerencie os usuários e suas permissões na organização.
         </PageHeaderDescription>
       </div>
-      <Button onClick={onInviteUser}>
-        <PlusCircle className="mr-2 h-4 w-4" />
-        Convidar Usuário
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button onClick={onInviteUser}>
+          <PlusCircle className="mr-2 h-4 w-4" />
+          Convidar Usuário
+        </Button>
+        <Button variant="outline" asChild>
+            <Link href="/settings">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Voltar
+            </Link>
+        </Button>
+      </div>
     </PageHeader>
   );
 }

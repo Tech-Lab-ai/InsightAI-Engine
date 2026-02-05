@@ -14,15 +14,17 @@ export default function ConsoleLayout({
   const pathname = usePathname();
   const isChatPage = pathname.startsWith('/chat');
 
-  // Oculta a sidebar na página de Configurações e suas sub-páginas.
-  const isSettingsPage = pathname.startsWith('/settings');
+  const hideSidebar = pathname.startsWith('/settings') || 
+                      pathname.startsWith('/users') ||
+                      pathname.startsWith('/billing') ||
+                      pathname.startsWith('/support');
 
 
   return (
     <div className="light-theme flex h-screen w-full flex-col bg-background">
       <AppHeader />
       <div className="flex flex-1 overflow-hidden border-t">
-        {!isSettingsPage && <Sidebar />}
+        {!hideSidebar && <Sidebar />}
         <main className={cn("relative flex-1 overflow-y-auto", !isChatPage && "p-4 md:p-8")}>
           {children}
         </main>
