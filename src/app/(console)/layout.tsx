@@ -15,15 +15,15 @@ export default function ConsoleLayout({
   const isChatPage = pathname.startsWith('/chat');
 
   return (
-    <div className="light-theme flex h-screen w-full flex-row bg-background overflow-hidden">
-      <Sidebar />
-      <div className="flex flex-1 flex-col">
-          <AppHeader />
-          <main className={cn("relative flex-1 overflow-y-auto", !isChatPage && "p-4 md:p-8")}>
-            {children}
-          </main>
-          <AppFooter />
+    <div className="light-theme flex h-screen w-full flex-col bg-background">
+      <AppHeader />
+      <div className="flex flex-1 overflow-hidden border-t">
+        <Sidebar />
+        <main className={cn("relative flex-1 overflow-y-auto", !isChatPage && "p-4 md:p-8")}>
+          {children}
+        </main>
       </div>
+      <AppFooter />
     </div>
   );
 }

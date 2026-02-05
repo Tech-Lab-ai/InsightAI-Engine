@@ -106,8 +106,8 @@ export function Sidebar() {
 
     return (
         <aside className="hidden w-[220px] flex-col border-r bg-secondary text-secondary-foreground md:flex lg:w-[280px]">
-            <div className="flex h-full max-h-screen flex-col gap-2">
-                <div className="flex h-16 items-center border-b px-4 lg:px-6">
+            <div className="flex h-full flex-col gap-2">
+                <div className="flex h-16 items-center px-4 lg:px-6">
                     <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                         <Logo className="w-24" />
                         <span className="sr-only">InsightAI</span>
