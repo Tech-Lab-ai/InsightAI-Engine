@@ -6,13 +6,14 @@ export type PlanFeature = {
 };
 
 export type Plan = {
-    id: 'trial' | 'free' | 'starter' | 'pro' | 'enterprise';
+    id: 'trial' | 'basico' | 'starter' | 'pro' | 'enterprise';
     name: string;
     price: string;
     description: string;
     features: PlanFeature[];
     cta: string;
     popular?: boolean;
+    asaasLink?: string;
 };
 
 export const plans: Plan[] = [
@@ -32,24 +33,25 @@ export const plans: Plan[] = [
         cta: 'Ativo',
     },
     {
-        id: 'free',
-        name: 'Free',
-        price: 'R$ 0,00',
-        description: 'Para uso pessoal e projetos pequenos, para sempre.',
+        id: 'basico',
+        name: 'Básico',
+        price: '17,99',
+        description: 'Plano pago mais acessível para começar.',
         features: [
             { name: 'Chat IA', status: 'included' },
-            { name: 'Até 100 Documentos', status: 'limited' },
-            { name: 'Workflows (1 ativo)', status: 'limited' },
+            { name: 'Até 500 Documentos', status: 'limited' },
+            { name: 'Workflows (3 ativos)', status: 'limited' },
             { name: 'Relatórios básicos', status: 'limited' },
-            { name: '1 Usuário', status: 'included' },
+            { name: '2 Usuários', status: 'included' },
             { name: 'Auditoria', status: 'excluded' },
         ],
-        cta: 'Selecionar',
+        cta: 'Assinar plano',
+        asaasLink: 'https://www.asaas.com/c/5o0h8z2tpdfb5j6k',
     },
     {
         id: 'starter',
         name: 'Starter',
-        price: 'R$ 49',
+        price: '49',
         description: 'Para startups e pequenas equipes em crescimento.',
         features: [
             { name: 'Chat IA', status: 'included' },
@@ -59,12 +61,13 @@ export const plans: Plan[] = [
             { name: 'Até 5 Usuários', status: 'included' },
             { name: 'Auditoria', status: 'excluded' },
         ],
-        cta: 'Fazer upgrade',
+        cta: 'Assinar plano',
+        asaasLink: 'https://www.asaas.com/c/k70hj8azups1naqa',
     },
     {
         id: 'pro',
         name: 'Pro',
-        price: 'R$ 149',
+        price: '149',
         description: 'Para empresas que precisam de colaboração e mais poder.',
         features: [
             { name: 'Chat IA', status: 'included' },
@@ -74,8 +77,9 @@ export const plans: Plan[] = [
             { name: 'Até 20 Usuários', status: 'included' },
             { name: 'Auditoria', status: 'included' },
         ],
-        cta: 'Fazer upgrade',
+        cta: 'Assinar plano',
         popular: true,
+        asaasLink: 'https://www.asaas.com/c/4i4cv68t7vhz04dv',
     },
     {
         id: 'enterprise',

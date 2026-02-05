@@ -1,8 +1,8 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, X, Minus } from "lucide-react";
+import { Check, X, Minus, AlertTriangle } from "lucide-react";
 import { Plan, FeatureStatus } from "./plans-data";
 
 type PlanCardProps = {
@@ -21,19 +21,31 @@ const featureColorMap: Record<FeatureStatus, string> = {
     'excluded': 'text-muted-foreground',
 };
 
-
 export function PlanCard({ plan }: PlanCardProps) {
-    const router = useRouter();
-
-    const handleAction = () => {
-        if (plan.id === 'enterprise') {
-            router.push('/contato');
-        } else if (plan.price !== 'R$ 0,00' && plan.id !== 'trial') {
-            router.push(`/billing/checkout?plan=${plan.id}`);
-        }
-    };
-
     const isCurrent = plan.id === 'trial'; // Mock, a lógica real viria do estado do usuário
+
+    const CtaButton = () => {
+        const buttonProps = {
+            className: "w-full",
+            variant: isCurrent ? "secondary" as const : (plan.popular ? "default" as const : "outline" as const),
+            disabled: isCurrent,
+        };
+
+        if (isCurrent) {
+            return <Button {...buttonProps}>Plano Atual</Button>;
+        }
+
+        const href = plan.asaasLink || (plan.id === 'enterprise' ? '/contato' : '#');
+        const target = plan.asaasLink ? '_blank' : '_self';
+
+        return (
+            <Button {...buttonProps} asChild>
+                <Link href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
+                    {plan.cta}
+                </Link>
+            </Button>
+        );
+    };
 
     return (
         <Card className={`flex flex-col ${plan.popular ? 'border-primary ring-2 ring-primary' : ''}`}>
@@ -46,9 +58,24 @@ export function PlanCard({ plan }: PlanCardProps) {
             </CardHeader>
             <CardContent className="flex-grow">
                 <div className="mb-6">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">/mês</span>
+                    {plan.price === 'Custom' || plan.price === 'R$ 0,00' ? (
+                        <span className="text-4xl font-bold">{plan.price}</span>
+                    ) : (
+                        <div>
+                            <span className="text-muted-foreground text-2xl align-top">R$ </span>
+                            <span className="text-4xl font-bold">{plan.price}</span>
+                            <span className="text-muted-foreground">/mês</span>
+                        </div>
+                    )}
                 </div>
+
+                {plan.price !== 'Custom' && plan.price !== 'R$ 0,00' && (
+                    <p className="text-xs text-muted-foreground mb-6 flex items-start gap-1.5">
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                        <span>Os valores podem sofrer pequenos reajustes de acordo com taxas operacionais do Asaas.</span>
+                    </p>
+                )}
+
                 <ul className="space-y-4">
                     {plan.features.map((feature, index) => {
                         const Icon = featureIconMap[feature.status];
@@ -63,14 +90,7 @@ export function PlanCard({ plan }: PlanCardProps) {
                 </ul>
             </CardContent>
             <CardFooter>
-                <Button 
-                    className="w-full" 
-                    variant={isCurrent ? "secondary" : plan.popular ? "default" : "outline"}
-                    onClick={handleAction}
-                    disabled={isCurrent}
-                >
-                    {isCurrent ? "Plano Atual" : plan.cta}
-                </Button>
+                <CtaButton />
             </CardFooter>
         </Card>
     );
