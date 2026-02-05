@@ -26,7 +26,7 @@ export function ReportsAuditFilters() {
                 <SelectContent>
                     <SelectItem value="all_severities">Todas as Severidades</SelectItem>
                     <SelectItem value="critical">Crítico</SelectItem>
-                    <SelectItem value: "high">Alto</SelectItem>
+                    <SelectItem value="high">Alto</SelectItem>
                     <SelectItem value="medium">Médio</SelectItem>
                     <SelectItem value="low">Baixo</SelectItem>
                     <SelectItem value="info">Informativo</SelectItem>
