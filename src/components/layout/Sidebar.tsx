@@ -16,7 +16,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Logo } from "../logo"
 
 const menuItems = [
     { 
@@ -107,14 +106,8 @@ export function Sidebar() {
     return (
         <aside className="hidden w-[220px] flex-col border-r bg-secondary text-secondary-foreground md:flex lg:w-[280px]">
             <div className="flex h-full flex-col gap-2">
-                <div className="flex h-16 items-center px-4 lg:px-6">
-                    <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
-                        <Logo className="w-24" />
-                        <span className="sr-only">InsightAI</span>
-                    </Link>
-                </div>
-                <div className="flex-1 overflow-y-auto">
-                    <nav className="grid items-start px-2 text-sm font-medium lg:px-4 py-4">
+                <div className="flex-1 overflow-y-auto pt-4">
+                    <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                         <Accordion type="single" collapsible defaultValue={defaultAccordionValue} className="w-full">
                         {menuItems.map((item) => {
                             if (item.type === 'link') {

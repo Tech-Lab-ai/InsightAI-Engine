@@ -7,12 +7,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UserNav } from "@/components/user-nav";
+import { Logo } from "../logo";
 
 export function AppHeader() {
   return (
-    <header className="flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <form className="ml-auto flex-1 sm:flex-initial">
+    <header className="flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
+       <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
+            <Logo className="w-24" />
+            <span className="sr-only">InsightAI</span>
+        </Link>
+      <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
+        <form className="flex-1 sm:flex-initial">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
