@@ -1,0 +1,23 @@
+##Visão Geral da Arquitetura
+Objetivo
+
+Construir um Pipeline RAG de nível empresarial capaz de:
+
+Ingerir documentos em múltiplos formatos
+
+Indexar vetorialmente com baixa latência
+
+Consultar em tempo real com respostas contextualizadas
+
+Operar com segurança, versionamento e auditoria
+
+##Stack Tecnológica
+Camada	Tecnologia	Função
+Frontend	Next.js (App Router)	UI, Chat, Console de documentos
+Backend	Next.js API / Edge Functions	Orquestração RAG
+Autenticação	Firebase Auth	Usuários, permissões e RBAC
+Banco operacional	Firestore	Metadados, histórico, logs
+Storage	Firebase Storage / GCS	PDFs, DOCX, CSV, mídia
+IA Core	Vertex AI (Gemini / Embeddings)	Geração e vetorização
+Vetores	Vertex AI Vector Search	Busca semântica
+Orquestração	InsightAI Engine	Pipeline inteligente, regras e memória
