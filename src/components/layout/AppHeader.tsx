@@ -8,14 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UserNav } from "@/components/user-nav";
 import { Logo } from "../logo";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
 
 export function AppHeader() {
   return (
@@ -28,15 +20,6 @@ export function AppHeader() {
           <Logo className="w-24"/>
           <span className="sr-only">InsightAI</span>
         </Link>
-         <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-                <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                        <Link href="/dashboard">Dashboard</Link>
-                    </BreadcrumbLink>
-                </BreadcrumbItem>
-            </BreadcrumbList>
-        </Breadcrumb>
       </nav>
       
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
