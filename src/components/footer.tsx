@@ -7,6 +7,7 @@ export function Footer() {
     { href: "/plataforma", label: "Plataforma" },
     { href: "/seguranca", label: "Segurança" },
     { href: "/precos", label: "Preços" },
+    { href: "/integrations", label: "Integrações" },
     { href: "/contato", label: "Contato" },
   ];
 

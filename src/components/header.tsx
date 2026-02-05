@@ -15,6 +15,7 @@ export function Header() {
     { href: "/plataforma", label: "Plataforma" },
     { href: "/seguranca", label: "Segurança" },
     { href: "/precos", label: "Planos" },
+    { href: "/integrations", label: "Integrações" },
     { href: "/contato", label: "Contato" },
   ];
 
