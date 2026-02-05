@@ -1,15 +1,21 @@
-import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
+'use client';
+import * as React from 'react';
+import { SettingsHeader } from "@/components/settings/SettingsHeader";
+import { SettingsGrid } from "@/components/settings/SettingsGrid";
+import { SettingsLoading } from "@/components/settings/SettingsLoading";
 
 export default function SettingsPage() {
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <>
-            <PageHeader>
-                <PageHeaderTitle>Configurações</PageHeaderTitle>
-                <PageHeaderDescription>Ajustes da sua conta, empresa e integrações.</PageHeaderDescription>
-            </PageHeader>
-             <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Opções de configuração em construção.</p>
-            </div>
-        </>
+        <div className="space-y-8">
+            <SettingsHeader />
+            {isLoading ? <SettingsLoading /> : <SettingsGrid />}
+        </div>
     );
 }

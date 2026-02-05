@@ -1,0 +1,58 @@
+import { SettingsCard } from "@/components/settings/SettingsCard";
+import { User, Building, Users, Shield, Zap, CreditCard } from "lucide-react";
+
+const settingsCategories = [
+    {
+        href: "/settings/profile",
+        icon: User,
+        title: "Perfil",
+        description: "Informações pessoais e preferências da sua conta.",
+    },
+    {
+        href: "/settings/company",
+        icon: Building,
+        title: "Empresa",
+        description: "Gerencie os dados e configurações da sua organização.",
+    },
+    {
+        href: "/users",
+        icon: Users,
+        title: "Usuários & Acessos",
+        description: "Controle quem pode acessar e o que pode fazer.",
+    },
+    {
+        href: "/settings/security",
+        icon: Shield,
+        title: "Segurança",
+        description: "Ajuste as políticas de autenticação e segurança.",
+    },
+    {
+        href: "/settings/integrations",
+        icon: Zap,
+        title: "Integrações",
+        description: "Conecte o InsightAI com outras ferramentas.",
+    },
+    {
+        href: "/billing",
+        icon: CreditCard,
+        title: "Plano & Faturamento",
+        description: "Gerencie sua assinatura, pagamentos e faturas.",
+    },
+];
+
+
+export function SettingsGrid() {
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {settingsCategories.map((category) => (
+                <SettingsCard 
+                    key={category.href}
+                    href={category.href}
+                    icon={category.icon}
+                    title={category.title}
+                    description={category.description}
+                />
+            ))}
+        </div>
+    );
+}

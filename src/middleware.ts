@@ -16,5 +16,5 @@ export function middleware(request: NextRequest) {
  
 export const config = {
   // Corresponde a todas as rotas dentro do grupo (console)
-  matcher: ['/dashboard/:path*', '/chat/:path*', '/documents/:path*', '/sessions/:path*', '/audit/:path*', '/users/:path*', '/settings/:path*'],
+  matcher: ['/dashboard/:path*', '/chat/:path*', '/documents/:path*', '/sessions/:path*', '/audit/:path*', '/users/:path*', '/settings/:path*', '/billing/:path*'],
 }
