@@ -11,6 +11,7 @@ import {
     Settings,
     Users,
     CreditCard,
+    LifeBuoy,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -80,6 +81,12 @@ const menuItems = [
         href: "/billing", 
         label: "Faturamento", 
         icon: CreditCard
+    },
+    { 
+        type: 'link',
+        href: "/support", 
+        label: "Suporte", 
+        icon: LifeBuoy 
     },
     { 
         type: 'link',

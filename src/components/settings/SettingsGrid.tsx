@@ -1,5 +1,5 @@
 import { SettingsCard } from "@/components/settings/SettingsCard";
-import { User, Building, Users, Shield, Zap, CreditCard } from "lucide-react";
+import { User, Building, Users, Shield, Zap, CreditCard, LifeBuoy } from "lucide-react";
 
 const settingsCategories = [
     {
@@ -37,6 +37,12 @@ const settingsCategories = [
         icon: CreditCard,
         title: "Plano & Faturamento",
         description: "Gerencie sua assinatura, pagamentos e faturas.",
+    },
+    {
+        href: "/support",
+        icon: LifeBuoy,
+        title: "Suporte",
+        description: "Fale com nossa equipe e tire suas dúvidas.",
     },
 ];
 

@@ -25,6 +25,8 @@ export function PlanCard({ plan }: PlanCardProps) {
     const isCurrent = plan.id === 'trial'; // Mock, a lógica real viria do estado do usuário
 
     const CtaButton = () => {
+        const isEnterprise = plan.id === 'enterprise';
+        
         const buttonProps = {
             className: "w-full",
             variant: isCurrent ? "secondary" as const : (plan.popular ? "default" as const : "outline" as const),
@@ -35,7 +37,7 @@ export function PlanCard({ plan }: PlanCardProps) {
             return <Button {...buttonProps}>Plano Atual</Button>;
         }
 
-        const href = plan.asaasLink || (plan.id === 'enterprise' ? '/contato' : '#');
+        const href = isEnterprise ? '/support?plan=enterprise' : (plan.asaasLink || '#');
         const target = plan.asaasLink ? '_blank' : '_self';
 
         return (
