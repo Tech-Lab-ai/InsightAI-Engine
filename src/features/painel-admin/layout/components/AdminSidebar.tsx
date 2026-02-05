@@ -36,9 +36,6 @@ export function AdminSidebar() {
 
   return (
     <aside className="hidden w-[220px] flex-col border-r bg-secondary text-secondary-foreground md:flex lg:w-[280px]">
-      <div className="flex h-16 items-center border-b px-6">
-        {/* Logo moved to header */}
-      </div>
       <div className="flex-1 overflow-y-auto">
         <nav className="grid items-start px-2 text-sm font-medium lg:px-4 py-4">
           {menuItems.map((item) => (
