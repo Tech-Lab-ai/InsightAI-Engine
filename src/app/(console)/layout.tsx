@@ -18,13 +18,11 @@ export default function ConsoleLayout({
     <div className="light-theme flex h-screen w-full flex-row bg-background overflow-hidden">
       <Sidebar />
       <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 flex-col overflow-auto">
-            <AppHeader />
-            <main className={cn("relative flex-1", !isChatPage && "p-4 md:p-8")}>
-              {children}
-            </main>
-            {!isChatPage && <AppFooter />}
-          </div>
+          <AppHeader />
+          <main className={cn("relative flex-1 overflow-y-auto", !isChatPage && "p-4 md:p-8")}>
+            {children}
+          </main>
+          <AppFooter />
       </div>
     </div>
   );

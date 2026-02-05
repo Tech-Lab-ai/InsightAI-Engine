@@ -4,7 +4,7 @@ export function AppFooter({ className }: { className?: string }) {
   return (
     <footer
       className={cn(
-        "flex h-12 items-center justify-between border-t bg-background px-6 text-xs text-muted-foreground mt-auto",
+        "flex h-12 items-center justify-between border-t bg-background px-6 text-xs text-muted-foreground",
         className
       )}
     >
