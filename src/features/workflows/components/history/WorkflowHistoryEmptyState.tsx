@@ -1,4 +1,3 @@
-
 import { History } from "lucide-react";
 
 export function WorkflowHistoryEmptyState() {

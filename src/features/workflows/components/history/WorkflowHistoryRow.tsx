@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -7,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { WorkflowExecutionTimeline } from "./WorkflowExecutionTimeline";
-import { WorkflowExecution, mockTimelineSteps, mockTimelineStepsError } from "./history-mock-data";
+import { mockTimelineSteps, mockTimelineStepsError } from "../../services/executionService";
+import { WorkflowExecution } from "../../types/execution";
 import { CheckCircle, XCircle, Loader, CircleSlash } from "lucide-react";
 
 type WorkflowHistoryRowProps = {

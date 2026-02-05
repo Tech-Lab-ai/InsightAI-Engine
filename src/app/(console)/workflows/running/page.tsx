@@ -6,7 +6,8 @@ import { WorkflowRunningStats } from '@/features/workflows/components/running/Wo
 import { WorkflowRunningList } from '@/features/workflows/components/running/WorkflowRunningList';
 import { WorkflowRunningEmptyState } from '@/features/workflows/components/running/WorkflowRunningEmptyState';
 import { WorkflowRunningLoading } from '@/features/workflows/components/running/WorkflowRunningLoading';
-import { getMockRunningWorkflows, RunningWorkflow } from '@/features/workflows/services/runningService';
+import { getMockRunningWorkflows } from '@/features/workflows/services/runningService';
+import { RunningWorkflow } from '@/features/workflows/types/running';
 
 export default function WorkflowsRunningPage() {
     const [isLoading, setIsLoading] = React.useState(true);

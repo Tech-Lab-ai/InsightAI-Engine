@@ -1,9 +1,8 @@
-
 'use client';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { WorkflowHistoryRow } from "./WorkflowHistoryRow";
-import { WorkflowExecution } from "./history-mock-data";
+import { WorkflowExecution } from "../../types/execution";
 
 type WorkflowHistoryListProps = {
     executions: WorkflowExecution[];
