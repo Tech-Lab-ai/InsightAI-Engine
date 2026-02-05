@@ -8,10 +8,6 @@ import {
     Workflow,
     BarChart,
     FileText,
-    Settings,
-    Users,
-    CreditCard,
-    LifeBuoy,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -69,30 +65,6 @@ const menuItems = [
             { href: "/documents/categories", label: "Categorias" },
             { href: "/documents/permissions", label: "Permissões" },
         ]
-    },
-    { 
-        type: 'link',
-        href: "/users", 
-        label: "Usuários", 
-        icon: Users 
-    },
-    { 
-        type: 'link',
-        href: "/billing", 
-        label: "Faturamento", 
-        icon: CreditCard
-    },
-    { 
-        type: 'link',
-        href: "/support", 
-        label: "Suporte", 
-        icon: LifeBuoy 
-    },
-    { 
-        type: 'link',
-        href: "/settings", 
-        label: "Configurações", 
-        icon: Settings
     },
 ];
 
