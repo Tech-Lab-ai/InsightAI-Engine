@@ -8,15 +8,15 @@ export default function ConsoleLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="light-theme flex min-h-screen w-full flex-col bg-background">
-      <AppHeader />
-      <div className="flex flex-1">
-        <Sidebar />
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+    <div className="light-theme grid h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+      <Sidebar />
+      <div className="flex flex-col">
+        <AppHeader />
+        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 overflow-y-auto">
           {children}
         </main>
+        <AppFooter />
       </div>
-      <AppFooter />
     </div>
   );
 }
