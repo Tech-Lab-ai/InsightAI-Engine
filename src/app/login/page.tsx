@@ -45,8 +45,8 @@ export default function LoginPage() {
               </div>
               <Input id="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full">
-              Entrar
+            <Button asChild className="w-full">
+              <Link href="/dashboard">Entrar</Link>
             </Button>
           </div>
         </div>
