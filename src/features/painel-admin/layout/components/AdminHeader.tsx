@@ -1,14 +1,18 @@
+import Link from "next/link";
 import { Bell, LifeBuoy, Search } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AdminUserNav } from "./AdminUserNav";
+import { Logo } from "@/components/logo";
 
 export function AdminHeader() {
   return (
     <header className="flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
-       <div className="flex-1">
-         <h1 className="font-semibold text-lg text-muted-foreground">Painel do Operador</h1>
-       </div>
+       <Link href="/painel-admin/dashboard" className="flex items-center gap-4">
+          <Logo />
+         <h1 className="hidden font-semibold text-lg text-muted-foreground md:block">Painel do Operador</h1>
+       </Link>
       <div className="flex flex-1 items-center justify-end gap-4 md:gap-2 lg:gap-4">
         <div className="w-full flex-1 sm:w-auto sm:flex-initial">
             <div className="relative">
