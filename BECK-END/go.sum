@@ -1,0 +1,14 @@
+github.com/go-chi/chi/v5 v5.0.12 h1:aT2bN2T3+3nS52PZ0I+h1I54i91Ij3w7G4OrT+O5r/4=
+github.com/go-chi/chi/v5 v5.0.12/go.mod h1:A5nSflT3otFr0i86Ycl48kJxOPwIeXm2iL2G0oK+z+s=
+github.com/go-chi/cors v1.2.1 h1:dDffA17I8QG5I/t4eA4gbwgC49YgJpxsD/o2022g+9o=
+github.com/go-chi/cors v1.2.1/go.mod h1:1n1c4RzJ4/6v/hP9I6QhHnZWmM0p5WpQ1p1sA3AnpW4=
+github.com/golang-jwt/jwt/v5 v5.2.1 h1:0L53MrPqw42S3Y32x3weq3I0jJfx4l+3mBYbYm3y8yI=
+github.com/golang-jwt/jwt/v5 v5.2.1/go.mod h1:Q1j2g8jYgy0i+p58r7qgnoC4o4SgCHauVs8uVq84Fos=
+github.com/google/uuid v1.6.0 h1:NIh94Ujov7sI25iGcM5NAQy142rhAh1x+OPO53Wd3V8=
+github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgIfe4s2GuqGkc1aH3gqj2Fz4B2iQvA36Yro=
+github.com/joho/godotenv v1.5.1 h1:yO8+10f4g3enisC1LhVn0wJoGEvEaVqetM2iB5p20nQ=
+github.com/joho/godotenv v1.5.1/go.mod h1:1RorLWDcBLuEnt94yF0s65tPPLRvrf4xR0/1bF2z9m8=
+golang.org/x/crypto v0.24.0 h1:h4m2/+1rP49+lY7GIp3c4j47oKIGO1x32yIprI6R1v4=
+golang.org/x/crypto v0.24.0/go.mod h1:LzM8/3WJLEGT+6lT2l3qGvSg7LqX70k8eP3bQ2d+qL4=
+golang.org/x/sys v0.21.0 h1:S3hG9Lpif+Dk22A8uQKiS4vJk+TSWj/m0K4V85a3Cms=
+golang.org/x/sys v0.21.0/go.mod h1:oPjhBFsDhNfQa/kss1A3t2VdKk1j1A224zNaC+n3Gv8=
