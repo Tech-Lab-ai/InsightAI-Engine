@@ -5,5 +5,9 @@ export default function ConsoleLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AppLayout>{children}</AppLayout>;
+  return (
+    <div className="light-theme">
+      <AppLayout>{children}</AppLayout>
+    </div>
+  );
 }
