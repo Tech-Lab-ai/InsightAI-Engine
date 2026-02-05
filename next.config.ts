@@ -1,3 +1,4 @@
+import { withWorkflow } from "workflow/next"; 
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -32,4 +33,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withWorkflow(nextConfig, {
+  workflows: {
+    dirs: ['src/app/api', 'src/workflows'], 
+  },
+});
