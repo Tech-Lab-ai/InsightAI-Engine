@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"insightai/internal/users/domain"
 	"insightai/internal/users/repository"
 

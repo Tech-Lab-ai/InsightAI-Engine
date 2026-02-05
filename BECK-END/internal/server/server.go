@@ -4,14 +4,27 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"insightai/internal/auth/handler"
+	"insightai/internal/admin/handler"
+	"insightai/internal/admin/service"
+	authhandler "insightai/internal/auth/handler"
+	"insightai/internal/audit"
+	audithandler "insightai/internal/audit/handler"
+	auditrepo "insightai/internal/audit/repository"
+	"insightai/internal/billing"
+	billinghandler "insightai/internal/billing/handler"
+	billingrepo "insightai/internal/billing/repository"
 	"insightai/internal/config"
 	"insightai/internal/middleware"
-	"insightai/internal/users/repository"
+	"insightai/internal/rbac"
+	rbacrepo "insightai/internal/rbac/repository"
+	"insightai/internal/support"
+	supporthandler "insightai/internal/support/handler"
+	supportrepo "insightai/internal/support/repository"
+	"insightai/internal/tenants/repository"
+	userrepo "insightai/internal/users/repository"
 	userservice "insightai/internal/users/service"
 
 	"github.com/go-chi/chi/v5"
-	chimid "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 )
 
@@ -27,51 +40,82 @@ func New() http.Handler {
 		AllowCredentials: true,
 		MaxAge:           300,
 	}))
-	r.Use(chimid.RequestID)
-	r.Use(middleware.Logger) // Nosso logger estruturado
-	r.Use(chimid.Recoverer)
+	r.Use(middleware.RequestID)
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
 
-	// Repositórios
-	userRepo := repository.NewUserRepoMock()
+	// --- Repositórios ---
+	userRepo := userrepo.NewUserRepoMock()
+	tenantRepo := repository.NewTenantRepoMock()
+	auditRepo := auditrepo.NewAuditRepoMock()
+	billingRepo := billingrepo.NewBillingRepoMock()
+	supportRepo := supportrepo.NewSupportRepoMock()
+	rbacRepo := rbacrepo.NewRBACRepoMock()
 
-	// Serviços
+	// --- Serviços ---
+	auditService := audit.NewAuditService(auditRepo)
 	userService := userservice.NewUserService(userRepo)
+	billingService := billing.NewBillingService(billingRepo, auditService)
+	supportService := support.NewSupportService(supportRepo, auditService)
+	rbacService := rbac.NewRBACService(rbacRepo)
+	adminService := service.NewAdminService(tenantRepo, auditService)
 
-	// Handlers
-	authHandler := handler.NewAuthHandler(userService)
+	// --- Handlers ---
+	authHandler := authhandler.NewAuthHandler(userService)
+	auditHandler := audithandler.NewAuditHandler(auditService)
+	billingHandler := billinghandler.NewBillingHandler(billingService)
+	supportHandler := supporthandler.NewSupportHandler(supportService)
+	adminHandler := handler.NewAdminHandler(adminService)
 
-	// Rotas Públicas
+	// --- Rotas Públicas ---
 	r.Get("/health", healthCheckHandler)
 	r.Route("/auth", func(r chi.Router) {
 		r.Post("/login", authHandler.Login)
 		r.Post("/refresh", authHandler.Refresh)
 	})
+	r.Post("/webhooks/asaas", billingHandler.AsaasWebhook)
 
-	// Rotas Privadas (Protegidas por Autenticação e Tenant)
+	// --- Rotas Privadas de Cliente (/v1) ---
 	r.Route("/v1", func(r chi.Router) {
 		r.Use(middleware.Auth)
 		r.Use(middleware.TenantResolver)
 
-		// Exemplo: /v1/users/me
-		r.Route("/users", func(r chi.Router) {
-			r.Get("/me", func(w http.ResponseWriter, r *http.Request) {
-				userID, _ := middleware.GetUserIDFromCtx(r.Context())
-				tenantID, _ := middleware.GetTenantFromCtx(r.Context())
+		r.Get("/users/me", func(w http.ResponseWriter, r *http.Request) {
+			userID, _ := middleware.GetUserIDFromCtx(r.Context())
+			tenantID, _ := middleware.GetTenantFromCtx(r.Context())
+			w.Write([]byte("User ID: " + userID + " | Tenant ID: " + tenantID))
+		})
 
-				// Aqui você chamaria o serviço de usuário para obter os detalhes
-				w.Write([]byte("User ID: " + userID + " | Tenant ID: " + tenantID))
-			})
+		// Rotas de Suporte do Cliente
+		r.Route("/support/tickets", func(r chi.Router) {
+			r.Post("/", supportHandler.CreateTicket)
+			r.Get("/", supportHandler.GetActiveTicketForTenant)
+			r.Post("/{id}/messages", supportHandler.AddMessageToTicket)
 		})
 	})
 
-	// Rotas do Painel de Administração
+	// --- Rotas do Painel de Administração ---
 	r.Route("/admin", func(r chi.Router) {
 		r.Use(middleware.Auth)
-		r.Use(middleware.RequireRole("platform_admin")) // Middleware de RBAC
+		r.Use(middleware.RequireRole(rbacService, "platform_admin")) // Middleware de RBAC
 
-		r.Get("/dashboard", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("Admin Dashboard Data"))
+		r.Get("/dashboard", adminHandler.GetDashboardMetrics)
+
+		// Admin - Tenants
+		r.Route("/tenants", func(r chi.Router) {
+			r.Get("/", adminHandler.ListTenants)
+			r.Get("/{id}", adminHandler.GetTenant)
+			r.Post("/{id}/suspend", adminHandler.SuspendTenant)
 		})
+
+		// Admin - Users
+		r.Get("/users", adminHandler.ListGlobalUsers)
+
+		// Admin - Audit
+		r.Get("/audit-logs", auditHandler.GetAuditLogs)
+
+		// Admin - Support
+		r.Get("/support/tickets", supportHandler.GetAllTickets)
 	})
 
 	return r
