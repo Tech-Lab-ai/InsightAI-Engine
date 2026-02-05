@@ -62,7 +62,7 @@ const menuItems = [
         basePath: "/documents",
         subItems: [
             { href: "/documents", label: "Todos os Documentos" },
-            { href: "/documents/upload", label: "Upload" },
+            { href: "/documents/upload", label: "Upload de Documento" },
             { href: "/documents/categories", label: "Categorias" },
             { href: "/documents/permissions", label: "Permissões" },
         ]
