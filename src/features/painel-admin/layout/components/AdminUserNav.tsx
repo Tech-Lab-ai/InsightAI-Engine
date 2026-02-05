@@ -35,7 +35,7 @@ export function AdminUserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="#">
+            <Link href="/painel-admin/perfil">
                 <User className="mr-2 h-4 w-4" />
                 <span>Meu Perfil</span>
             </Link>
