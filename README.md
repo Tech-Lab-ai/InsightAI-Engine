@@ -249,4 +249,4 @@ support@insightai.com (exemplo)
 
 ---
 
-**InsightAI — IA confiável para decisões reais.**
+**InsightAI — IA confiável para decisões reais.**# InsightAI-Engine
