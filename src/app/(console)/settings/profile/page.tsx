@@ -1,15 +1,16 @@
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
+import { ProfileForm } from "@/components/settings/profile/ProfileForm";
+import { Separator } from "@/components/ui/separator";
 
 export default function ProfileSettingsPage() {
     return (
-        <>
+        <div className="space-y-6">
             <PageHeader>
                 <PageHeaderTitle>Perfil</PageHeaderTitle>
-                <PageHeaderDescription>Gerencie as configurações do seu perfil de usuário.</PageHeaderDescription>
+                <PageHeaderDescription>Gerencie suas informações pessoais e preferências da conta.</PageHeaderDescription>
             </PageHeader>
-            <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Página de Perfil em construção.</p>
-            </div>
-        </>
+            <Separator />
+            <ProfileForm />
+        </div>
     );
 }
