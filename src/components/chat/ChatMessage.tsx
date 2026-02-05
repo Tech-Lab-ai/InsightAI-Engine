@@ -31,11 +31,12 @@ export function ChatMessage({ role, content }: ChatMessageProps) {
             : "bg-muted"
         )}
       >
+        <p className="font-semibold">{isUser ? "Você" : "InsightAI"}</p>
         <p className="whitespace-pre-wrap">{content}</p>
       </div>
        {isUser && (
         <Avatar className="h-8 w-8">
-            <AvatarFallback>
+            <AvatarFallback className="bg-secondary text-secondary-foreground">
                 <User className="h-5 w-5" />
             </AvatarFallback>
         </Avatar>

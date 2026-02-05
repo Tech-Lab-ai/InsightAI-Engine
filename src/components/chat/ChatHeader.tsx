@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle, CircleDot } from "lucide-react";
 
 type ChatHeaderProps = {
-  onNewChat: () => void;
+  onNewChat?: () => void;
 };
 
 export function ChatHeader({ onNewChat }: ChatHeaderProps) {
@@ -15,7 +15,7 @@ export function ChatHeader({ onNewChat }: ChatHeaderProps) {
             <span>Baseado nos seus documentos</span>
         </div>
       </div>
-      <Button variant="outline" onClick={onNewChat}>
+      <Button variant="outline" onClick={onNewChat} disabled={!onNewChat}>
         <PlusCircle className="mr-2 h-4 w-4" />
         Nova conversa
       </Button>

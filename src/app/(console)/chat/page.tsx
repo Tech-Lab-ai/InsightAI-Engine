@@ -41,18 +41,9 @@ export default function ChatPage() {
     }, 1500);
   };
 
-  const handleNewChat = () => {
-    setMessages([
-        {
-          role: 'assistant',
-          content: 'Olá! Sou o assistente do InsightAI. Em que posso ajudar hoje?',
-        },
-    ]);
-  }
-
   return (
-    <div className="flex flex-col h-full">
-      <ChatHeader onNewChat={handleNewChat} />
+    <div className="absolute inset-0 flex flex-col bg-background">
+      <ChatHeader />
       <ChatMessageList messages={messages} isLoading={isLoading} />
       <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
     </div>

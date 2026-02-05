@@ -18,7 +18,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
     e.preventDefault();
     if (!content.trim() || isLoading) return;
     onSendMessage(content);
-    setContent('');
+    // setContent('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
