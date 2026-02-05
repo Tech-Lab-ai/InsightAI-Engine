@@ -13,7 +13,7 @@ import (
 func main() {
 	// Carrega as variáveis de ambiente do arquivo .env
 	// Em produção, as variáveis devem ser gerenciadas pelo ambiente de execução.
-	err := godotenv.Load("BECK-END/.env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Println("Aviso: Não foi possível carregar o arquivo .env. Usando variáveis de ambiente do sistema.")
 	}
