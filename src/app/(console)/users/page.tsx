@@ -1,23 +1,46 @@
-import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
-import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
+'use client';
+import * as React from 'react';
+import { UsersHeader } from '@/components/users/UsersHeader';
+import { UsersFilters } from '@/components/users/UsersFilters';
+import { UsersTable } from '@/components/users/UsersTable';
+import { UsersLoading } from '@/components/users/UsersLoading';
+import { UsersEmptyState } from '@/components/users/UsersEmptyState';
+import { UserInviteModal } from '@/components/users/UserInviteModal';
+import { mockUsers, User } from '@/components/users/mock-data';
 
 export default function UsersPage() {
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [users, setUsers] = React.useState<User[]>([]);
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setUsers(mockUsers);
+            setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleInviteUser = () => {
+        setIsModalOpen(true);
+    };
+
+    const renderContent = () => {
+        if (isLoading) {
+            return <UsersLoading />;
+        }
+        if (users.length === 0) {
+            return <UsersEmptyState onInviteUser={handleInviteUser} />;
+        }
+        return <UsersTable users={users} />;
+    };
+
     return (
-        <div className="flex flex-col gap-4">
-            <PageHeader>
-                 <div className="flex-1">
-                    <PageHeaderTitle>Usuários & Acessos</PageHeaderTitle>
-                    <PageHeaderDescription>Gerencie quem pode acessar o quê. Use papéis e permissões para manter a segurança.</PageHeaderDescription>
-                </div>
-                 <Button>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Convidar Usuário
-                </Button>
-            </PageHeader>
-            <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Tabela de usuários em breve.</p>
-            </div>
+        <div className="space-y-8">
+            <UsersHeader onInviteUser={handleInviteUser} />
+            <UsersFilters />
+            {renderContent()}
+            <UserInviteModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
         </div>
     );
 }
