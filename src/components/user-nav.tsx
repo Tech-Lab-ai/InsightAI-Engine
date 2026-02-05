@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CreditCard, Settings, User, Users, LifeBuoy } from "lucide-react";
+import { Settings, User, LifeBuoy } from "lucide-react";
 import { LogoutButton } from "@/features/auth/components/LogoutButton";
 
 export function UserNav() {
@@ -38,28 +38,16 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link href="/settings/profile">
                 <User className="mr-2 h-4 w-4" />
-                <span>Perfil</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-             <Link href="/billing">
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Faturamento</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-             <Link href="/settings">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Configurações</span>
+                <span>Minha Conta</span>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
          <DropdownMenuGroup>
              <DropdownMenuItem asChild>
-                <Link href="/users">
-                    <Users className="mr-2 h-4 w-4" />
-                    <span>Usuários</span>
+                <Link href="/settings">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Configurações da Empresa</span>
                 </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>

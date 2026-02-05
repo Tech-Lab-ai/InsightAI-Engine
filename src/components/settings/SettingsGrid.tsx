@@ -1,13 +1,7 @@
 import { SettingsCard } from "@/components/settings/SettingsCard";
-import { User, Building, Users, Shield, Zap, CreditCard, LifeBuoy } from "lucide-react";
+import { Building, Users, Shield, Zap, CreditCard, LifeBuoy } from "lucide-react";
 
 const settingsCategories = [
-    {
-        href: "/settings/profile",
-        icon: User,
-        title: "Perfil",
-        description: "Informações pessoais e preferências da sua conta.",
-    },
     {
         href: "/settings/company",
         icon: Building,
