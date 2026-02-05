@@ -3,6 +3,7 @@ import './globals.css';
 import '@/styles/theme.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: 'InsightAI - Transforme documentos em inteligência confiável',
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={cn('min-h-screen bg-background font-body antialiased', 'light-theme')}>
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
