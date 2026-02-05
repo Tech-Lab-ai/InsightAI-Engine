@@ -13,7 +13,6 @@ import {
   Zap,
   Flag,
   LifeBuoy,
-  Settings,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -28,7 +27,6 @@ const menuItems = [
   { href: '/painel-admin/integracoes', label: 'Integrações Globais', icon: Zap },
   { href: '/painel-admin/feature-flags', label: 'Feature Flags', icon: Flag },
   { href: '/painel-admin/suporte', label: 'Suporte & Tickets', icon: LifeBuoy },
-  { href: '/painel-admin/configuracoes', label: 'Configurações do Sistema', icon: Settings },
 ];
 
 export function AdminSidebar() {
@@ -44,7 +42,7 @@ export function AdminSidebar() {
               href={item.href}
               className={cn(
                 'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
-                pathname === item.href && 'bg-muted text-primary'
+                pathname.startsWith(item.href) && 'bg-muted text-primary'
               )}
             >
               <item.icon className="h-4 w-4" />

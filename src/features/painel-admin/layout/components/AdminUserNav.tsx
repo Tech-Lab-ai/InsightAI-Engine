@@ -43,7 +43,7 @@ export function AdminUserNav() {
           <DropdownMenuItem asChild>
              <Link href="/painel-admin/configuracoes">
                 <Settings className="mr-2 h-4 w-4" />
-                <span>Configurações</span>
+                <span>Configurações do Sistema</span>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
