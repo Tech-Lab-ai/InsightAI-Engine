@@ -13,9 +13,8 @@ export function Header() {
   const pathname = usePathname();
   const navLinks = [
     { href: "/plataforma", label: "Plataforma" },
-    { href: "/teste-plataforma", label: "Teste" },
     { href: "/seguranca", label: "Segurança" },
-    { href: "/precos", label: "Preços" },
+    { href: "/precos", label: "Planos" },
     { href: "/contato", label: "Contato" },
   ];
 

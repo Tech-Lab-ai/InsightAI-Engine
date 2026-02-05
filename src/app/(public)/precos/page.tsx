@@ -1,47 +1,70 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import PricingSuggestionTool from "@/components/pricing-suggestion-tool";
 
 const tiers = [
   {
-    name: "Starter",
-    price: "Consulte",
-    description: "Para indivíduos e pequenas equipes que estão começando a automatizar.",
+    name: "Básico",
+    price: "R$ 17,99",
+    priceSuffix: "/mês",
+    description: "Para indivíduos e pequenas equipes que estão começando.",
     features: [
-      "Processamento de até 500 documentos/mês",
-      "1 Agente de IA especializado",
+      "Chat com IA",
+      "Até 500 documentos/mês",
+      "Workflows básicos (até 3)",
+      "Até 2 usuários",
       "Suporte via e-mail",
-      "Chat com documentos",
     ],
-    cta: "Falar com Especialista",
+    cta: "Falar com um especialista",
+    ctaLink: "/contato",
   },
   {
-    name: "Business",
-    price: "Consulte",
-    description: "Para empresas em crescimento que precisam de mais poder e colaboração.",
+    name: "Starter",
+    price: "R$ 49",
+    priceSuffix: "/mês",
+    description: "Para startups e equipes que precisam de mais capacidade.",
+    features: [
+      "Tudo do Básico, e mais:",
+      "Até 1.000 documentos/mês",
+      "Workflows (até 5)",
+      "Relatórios completos",
+      "Até 5 usuários",
+    ],
+    cta: "Falar com um especialista",
+    ctaLink: "/contato",
+  },
+  {
+    name: "Pro",
+    price: "R$ 149",
+    priceSuffix: "/mês",
+    description: "Para empresas que precisam de colaboração e poder total.",
     features: [
       "Tudo do Starter, e mais:",
-      "Processamento de até 5.000 documentos/mês",
-      "Até 5 Agentes de IA especializados",
-      "Workflows inteligentes básicos",
+      "Documentos ilimitados",
+      "Workflows ilimitados",
+      "Auditoria completa",
+      "Até 20 usuários",
       "Suporte prioritário",
     ],
-    cta: "Falar com Especialista",
+    cta: "Falar com um especialista",
+    ctaLink: "/contato",
     popular: true,
   },
   {
     name: "Enterprise",
     price: "Customizado",
-    description: "Para grandes organizações com requisitos complexos de segurança e escala.",
+    priceSuffix: "",
+    description: "Para grandes organizações com requisitos de segurança e escala.",
     features: [
-      "Tudo do Business, e mais:",
-      "Volume de documentos ilimitado",
-      "Agentes e Workflows ilimitados",
-      "Auditoria e Governança avançada",
-      "Gerente de conta dedicado e SLA",
+      "Tudo do Pro, e mais:",
+      "Compliance & Governança",
+      "SLA Dedicado e suporte 24/7",
+      "Integrações Premium",
+      "Gerente de Contas dedicado",
     ],
-    cta: "Falar com Especialista",
+    cta: "Falar com Vendas",
+    ctaLink: "/contato",
   },
 ];
 
@@ -61,7 +84,7 @@ export default function PrecosPage() {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {tiers.map((tier) => (
               <Card key={tier.name} className={`flex flex-col ${tier.popular ? 'border-primary ring-2 ring-primary' : ''}`}>
                 <CardHeader>
@@ -74,6 +97,7 @@ export default function PrecosPage() {
                 <CardContent className="flex-grow">
                   <div className="mb-6">
                     <span className="text-4xl font-bold">{tier.price}</span>
+                    {tier.priceSuffix && <span className="text-muted-foreground">{tier.priceSuffix}</span>}
                   </div>
                   <ul className="space-y-4">
                     {tier.features.map((feature, index) => (
@@ -85,19 +109,13 @@ export default function PrecosPage() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" variant={tier.popular ? "default" : "outline"}>
-                    {tier.cta}
+                  <Button className="w-full" variant={tier.popular ? "default" : "outline"} asChild>
+                    <Link href={tier.ctaLink}>{tier.cta}</Link>
                   </Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-6">
-            <PricingSuggestionTool />
         </div>
       </section>
     </>
