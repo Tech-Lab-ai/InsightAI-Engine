@@ -7,7 +7,8 @@ import { WorkflowStats } from '@/features/workflows/components/WorkflowStats';
 import { WorkflowList } from '@/features/workflows/components/WorkflowList';
 import { WorkflowEmptyState } from '@/features/workflows/components/WorkflowEmptyState';
 import { WorkflowLoading } from '@/features/workflows/components/WorkflowLoading';
-import { getMockWorkflows, Workflow } from '@/features/workflows/services/workflowService';
+import { getMockWorkflows } from '@/features/workflows/services/workflowService';
+import { Workflow } from '@/features/workflows/types/workflow';
 import { useRouter } from 'next/navigation';
 
 

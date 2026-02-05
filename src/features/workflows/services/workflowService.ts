@@ -1,13 +1,6 @@
+import { Workflow } from '../types/workflow';
 
-export type Workflow = {
-    id: string;
-    name: string;
-    status: 'Ativo' | 'Pausado' | 'Com erro' | 'Agendado';
-    lastRun: string;
-    nextRun: string;
-};
-
-export const mockWorkflows: Workflow[] = [
+const mockWorkflows: Workflow[] = [
     {
         id: 'wf_001',
         name: 'Análise de Contratos Jurídicos',
@@ -44,3 +37,7 @@ export const mockWorkflows: Workflow[] = [
         nextRun: '-',
     },
 ];
+
+export function getMockWorkflows(): Workflow[] {
+    return mockWorkflows;
+}

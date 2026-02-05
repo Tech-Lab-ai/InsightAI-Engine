@@ -1,9 +1,12 @@
 
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { mockWorkflows } from "../mock-data";
+import { getMockWorkflows } from '@/features/workflows/services/workflowService';
 
 export function WorkflowHistoryFilters() {
+    const mockWorkflows = getMockWorkflows();
     return (
         <div className="flex items-center gap-2">
             <Select defaultValue="all">
