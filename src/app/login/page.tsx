@@ -6,13 +6,22 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Logo } from "@/components/logo";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ArrowLeft } from "lucide-react";
 
 export default function LoginPage() {
   const bgImage = PlaceHolderImages.find(img => img.id === 'login-background');
 
   return (
     <div className="w-full h-screen lg:grid lg:grid-cols-2">
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center py-12 relative">
+        <div className="absolute top-8 left-8">
+            <Button variant="outline" asChild>
+                <Link href="/">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Voltar ao site
+                </Link>
+            </Button>
+        </div>
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
             <Link href="/" className="flex justify-center mb-4">
