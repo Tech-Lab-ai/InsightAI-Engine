@@ -1,15 +1,31 @@
-import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
+'use client';
+import * as React from 'react';
+import { BillingHeader } from '@/components/billing/BillingHeader';
+import { CurrentPlanCard } from '@/components/billing/CurrentPlanCard';
+import { PlansGrid } from '@/components/billing/PlansGrid';
+import { BillingSummary } from '@/components/billing/BillingSummary';
+import { BillingLoading } from '@/components/billing/BillingLoading';
 
 export default function BillingPage() {
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <BillingLoading />;
+    }
+
     return (
-        <>
-            <PageHeader>
-                <PageHeaderTitle>Plano & Faturamento</PageHeaderTitle>
-                <PageHeaderDescription>Gerencie sua assinatura, métodos de pagamento e histórico de faturas.</PageHeaderDescription>
-            </PageHeader>
-            <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Página de Faturamento em construção.</p>
-            </div>
-        </>
+        <div className="space-y-8">
+            <BillingHeader />
+            <CurrentPlanCard />
+            <PlansGrid />
+            <BillingSummary />
+        </div>
     );
 }
