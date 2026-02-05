@@ -7,8 +7,8 @@ export function Logo({ className }: { className?: string }) {
       <Image
         src="/insigt ai.png"
         alt="InsightAI logo"
-        width={32}
-        height={32}
+        width={40}
+        height={40}
       />
     </div>
   );
