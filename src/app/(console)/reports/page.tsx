@@ -1,15 +1,31 @@
-import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
+'use client';
+import * as React from 'react';
+import { ReportsHeader } from '@/components/reports/ReportsHeader';
+import { ReportsKPIs } from '@/components/reports/ReportsKPIs';
+import { ReportsCharts } from '@/components/reports/ReportsCharts';
+import { ReportsTable } from '@/components/reports/ReportsTable';
+import { ReportsLoading } from '@/components/reports/ReportsLoading';
 
 export default function ReportsPage() {
-    return (
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="space-y-8">
+      <ReportsHeader />
+      {isLoading ? (
+        <ReportsLoading />
+      ) : (
         <>
-            <PageHeader>
-                <PageHeaderTitle>Relatórios</PageHeaderTitle>
-                <PageHeaderDescription>Visualize e exporte relatórios de atividade e uso.</PageHeaderDescription>
-            </PageHeader>
-            <div className="p-8 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">Página de Relatórios em construção.</p>
-            </div>
+          <ReportsKPIs />
+          <ReportsCharts />
+          <ReportsTable />
         </>
-    );
+      )}
+    </div>
+  );
 }

@@ -41,12 +41,6 @@ export function UserNav() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-             <Link href="/billing">
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Assinatura</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
              <Link href="/settings">
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Configurações</span>

@@ -50,7 +50,7 @@ const menuItems = [
         subItems: [
             { href: "/reports", label: "Resumo" },
             { href: "/reports/usage", label: "Uso & Atividade" },
-            { href: "/reports/roi", label: "ROI" },
+            { href: "/reports/roi", label: "Análise de ROI" },
             { href: "/audit", label: "Auditoria" },
         ]
     },
@@ -90,7 +90,7 @@ export function Sidebar() {
         if (item.type !== 'dropdown') return false;
         
         // Special case for /audit, which is under "Relatórios"
-        if (item.label === "Relatórios" && pathname === "/audit") {
+        if (item.basePath === "/reports" && pathname === "/audit") {
             return true;
         }
 
@@ -99,13 +99,19 @@ export function Sidebar() {
 
     const isSubItemOf = (subItems: {href:string}[], basePath: string) => {
         if (basePath === "/reports" && pathname === "/audit") return true;
-        return subItems.some(sub => pathname.startsWith(sub.href));
+        return subItems.some(sub => pathname === sub.href);
     }
 
 
     return (
         <aside className="hidden w-[220px] flex-col border-r bg-secondary text-secondary-foreground md:flex lg:w-[280px]">
             <div className="flex h-full flex-col gap-2">
+                <div className="flex h-16 items-center border-b px-4 lg:px-6">
+                    <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
+                        <Logo className="w-24" />
+                        <span className="sr-only">InsightAI</span>
+                    </Link>
+                </div>
                 <div className="flex-1 overflow-y-auto pt-4">
                     <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                         <Accordion type="single" collapsible defaultValue={defaultAccordionValue} className="w-full">
