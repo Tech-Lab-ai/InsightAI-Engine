@@ -1,5 +1,5 @@
 import { start } from "workflow/api";
-import { handleUserSignup } from "@/features/workflows/services/workflowService";
+import { handleUserSignup } from "@/workflows/user-signup";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
