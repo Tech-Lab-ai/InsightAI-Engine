@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ShieldAlert } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { ShieldAlert, ArrowLeft } from "lucide-react";
 
 export function SecurityHeader() {
     return (
@@ -12,6 +14,12 @@ export function SecurityHeader() {
                         Gerencie as políticas de segurança, autenticação e acesso da sua organização.
                     </PageHeaderDescription>
                 </div>
+                <Button variant="outline" asChild>
+                    <Link href="/settings">
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Voltar
+                    </Link>
+                </Button>
             </PageHeader>
             <Alert variant="destructive">
                 <ShieldAlert className="h-4 w-4" />
