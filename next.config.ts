@@ -35,6 +35,6 @@ const nextConfig: NextConfig = {
 
 export default withWorkflow(nextConfig, {
   workflows: {
-    dirs: ['src/app/api', 'src/workflows'], 
+    dirs: ['src/app/api', 'src/features/workflows'], 
   },
 });
