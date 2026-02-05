@@ -1,5 +1,5 @@
-import { DashboardHeader } from "@/features/painel-admin/layout/components/DashboardHeader";
-import { DashboardSidebar } from "@/features/painel-admin/layout/components/DashboardSidebar";
+import { AdminHeader } from "@/features/painel-admin/layout/components/AdminHeader";
+import { AdminSidebar } from "@/features/painel-admin/layout/components/AdminSidebar";
 import { cn } from "@/lib/utils";
 
 export default function PainelAdminLayout({
@@ -9,9 +9,9 @@ export default function PainelAdminLayout({
 }) {
   return (
     <div className="flex h-screen w-full flex-col bg-background">
-      <DashboardHeader />
+      <AdminHeader />
       <div className="flex flex-1 overflow-hidden border-t">
-        <DashboardSidebar />
+        <AdminSidebar />
         <main className={cn("relative flex-1 overflow-y-auto p-4 md:p-8")}>
           {children}
         </main>

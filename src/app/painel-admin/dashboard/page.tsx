@@ -1,22 +1,22 @@
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
-import { DashboardOverview } from "@/features/painel-admin/dashboard/components/DashboardOverview";
-import { ActivityCard } from "@/features/painel-admin/dashboard/components/ActivityCard";
-import { ChartsSection } from "@/features/painel-admin/dashboard/components/ChartsSection";
+import { AdminOverview } from "@/features/painel-admin/dashboard/components/AdminOverview";
+import { HealthStatusCard } from "@/features/painel-admin/dashboard/components/HealthStatusCard";
+import { AdminCharts } from "@/features/painel-admin/dashboard/components/AdminCharts";
 
 export default function DashboardPage() {
     return (
         <div className="space-y-8">
             <PageHeader>
-                <PageHeaderTitle>Dashboard</PageHeaderTitle>
-                <PageHeaderDescription>Visão geral da sua atividade na plataforma InsightAI.</PageHeaderDescription>
+                <PageHeaderTitle>Admin Dashboard</PageHeaderTitle>
+                <PageHeaderDescription>Visão geral da plataforma InsightAI.</PageHeaderDescription>
             </PageHeader>
-            <DashboardOverview />
+            <AdminOverview />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                  <div className="lg:col-span-2">
-                    <ChartsSection />
+                    <AdminCharts />
                  </div>
                  <div>
-                    <ActivityCard />
+                    <HealthStatusCard />
                  </div>
             </div>
         </div>
