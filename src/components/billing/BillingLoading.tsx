@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageHeader, PageHeaderDescription, PageHeaderTitle } from "@/components/page-header";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 
 export function BillingLoading() {
   return (
