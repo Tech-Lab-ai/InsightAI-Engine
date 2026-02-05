@@ -3,7 +3,7 @@
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ChartTooltip, ChartTooltipContent, ChartContainer, ChartConfig } from '@/components/ui/chart';
-import { mockChartData } from '../../services/activityService';
+import { getMockChartData } from '../../services/activityService';
 
 const chartConfig = {
   Chat: {
@@ -21,6 +21,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ActivityChart() {
+  const mockChartData = getMockChartData();
   return (
     <Card>
       <CardHeader>
