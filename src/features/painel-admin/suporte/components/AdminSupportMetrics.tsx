@@ -1,5 +1,6 @@
+'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Ticket, UserClock, ShieldAlert, Clock } from "lucide-react";
+import { Ticket, UserCheck, ShieldAlert, Clock } from "lucide-react";
 import { AdminSupportMetrics } from "../../types";
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 export function AdminSupportMetrics({ metrics }: Props) {
     const metricItems = [
         { title: 'Tickets Abertos', value: metrics.openTickets, icon: Ticket },
-        { title: 'Aguardando Cliente', value: metrics.pendingClient, icon: UserClock },
+        { title: 'Aguardando Cliente', value: metrics.pendingClient, icon: UserCheck },
         { title: 'Violações de SLA', value: metrics.slaViolations, icon: ShieldAlert, color: "text-red-500" },
         { title: 'Tempo Médio de Resposta', value: metrics.avgResponseTime, icon: Clock },
     ];
